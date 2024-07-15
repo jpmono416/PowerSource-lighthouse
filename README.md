@@ -41,14 +41,15 @@ npm install
 ### 3. Set Up the Database
 
 Ensure PostgreSQL is installed and running on your system. Create a database named lighthouse and run the provided SQL scripts to set up the tables. 
->TODO: DB Team, please add scripts here
+>TODO: DB Team, please provide details about the database setup once we have a live instance.
 
 ### 4. Run the Application
 Start the backend server:
 ```bash
 cd web-api
-npm run dev
+npm run start
 ```
+> If running on windows, the command is `npm run start-win`
 
 In a new terminal, start the frontend application:
 ```bash
@@ -56,7 +57,7 @@ cd web-app
 npm run dev
 ```
 
-The Lighthouse application should now be running on http://localhost:3000.
+The Lighthouse application should now be running on http://localhost:3000 for the backend and [to be determined] for the frontend.
 
 ### Contributing
-This project has been developed as part of the DF x HorizonX Hackathon by Team PowerSource. Please refer to the collaborators of this project for any queries.
+This project has been developed as part of the DF ft. HorizonX Hackathon, by Team PowerSource. Please refer to the collaborators of this project for any queries.

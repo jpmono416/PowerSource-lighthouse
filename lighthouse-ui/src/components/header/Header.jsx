@@ -3,9 +3,9 @@ import Button from "../library/Button";
 
 export default function Header() {
   return (
-    <div className="p-4 bg-secondary-50 bg-opacity-50 shadow-sm grid grid-cols-[1fr_auto]">
+    <div className="p-4 bg-secondary-50 bg-opacity-95 shadow-sm grid grid-cols-[1fr_auto]">
       <Link to="/">
-        <h1 className="text-primary-800 font-semibold tracking-wider text-3xl">
+        <h1 className="text-primary-800 font-light tracking-wider text-3xl">
           LightHouse
         </h1>
       </Link>

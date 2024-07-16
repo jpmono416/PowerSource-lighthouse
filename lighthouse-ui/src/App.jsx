@@ -1,6 +1,5 @@
 import Header from "./components/header/Header";
-import Home from "./components/home/Home";
-import LighthouseRouter from "./router/LighthouseRouter";
+import LighthouseRouter from "./routers/LighthouseRouter";
 
 function App() {
   return (

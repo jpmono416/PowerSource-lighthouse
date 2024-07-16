@@ -5,6 +5,7 @@ export default {
   theme: {
     colors: {
       primary: {
+        50: "#fdefee",
         100: "#fce0dc",
         200: "#f8c1ba",
         300: "#f5a197",
@@ -39,6 +40,7 @@ export default {
         900: "#322613",
       },
       green: {
+        50: "#eefaf4",
         100: "#def5e9",
         200: "#bdebd3",
         300: "#9be1bc",

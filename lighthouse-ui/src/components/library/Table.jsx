@@ -1,8 +1,9 @@
 import classNames from "classnames";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Table({ config, data }) {
   const cellClasses = "p-2";
+  const navigate = useNavigate();
 
   const columnLabels = config.columns.map((column, i) => {
     const columnLabelClasses = classNames(cellClasses, {
@@ -22,15 +23,15 @@ export default function Table({ config, data }) {
     config.columns.map((column) => {
       const classes = classNames(
         cellClasses,
-        "w-full h-full flex flex-col items-center justify-center"
+        "w-full h-full flex flex-col justify-center"
       );
       return (
         <td
           key={`${config.getRowKey(row)}${column.label}`}
-          className={classes}
           style={{ backgroundColor: "inherit" }}
+          className={classes}
         >
-          <Link to={config.getRowLink(row)}>{column.getCell(row) || "-"}</Link>
+          {column.getCell(row) || "-"}
         </td>
       );
     });
@@ -39,7 +40,8 @@ export default function Table({ config, data }) {
     return (
       <tr
         key={config.getRowKey(row)}
-        className="contents even:bg-secondary-100 hover:bg-primary-50 hover:bg-opacity-50"
+        className="contents even:bg-secondary-100 hover:bg-primary-50 hover:bg-opacity-50 cursor-pointer"
+        onClick={() => navigate(config.getRowLink(row))}
       >
         {getRowData(row)}
       </tr>

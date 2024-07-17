@@ -11,3 +11,8 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+:root {
+  --toastify-color-success: #59cd90;
+  --toastify-color-error: #be4f42;
+}

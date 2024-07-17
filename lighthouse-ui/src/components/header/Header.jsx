@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "../library/Button";
+import AuthenticationControls from "./AuthenticationControls";
 
 export default function Header() {
   return (
@@ -10,8 +11,7 @@ export default function Header() {
         </h1>
       </Link>
       <div className="flex flex-row gap-2">
-        <Button primary>Register</Button>
-        <Button>Log In</Button>
+        <AuthenticationControls />
       </div>
     </div>
   );

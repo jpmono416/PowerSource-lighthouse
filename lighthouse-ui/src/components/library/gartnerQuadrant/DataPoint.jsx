@@ -26,8 +26,11 @@ export default function DataPoint({ label, x, y, gradient }) {
 
   return (
     <div
-      className="absolute w-[2vw] max-w-4 aspect-square bg-green-500 rounded-full translate-x-[-50%] translate-y-[50%] cursor-pointer group hover:animate-pulse transition-all duration-1000"
-      style={dataPointPosition}
+      className="absolute w-[3.5%] aspect-square bg-green-500 rounded-full translate-x-[-50%] translate-y-[50%] cursor-pointer group z-0 hover:z-10"
+      style={{
+        ...dataPointPosition,
+        transition: "bottom 1s ease, left 1s ease",
+      }}
     >
       <div
         className="absolute hidden group-hover:block px-2 py-1 bg-green-300"

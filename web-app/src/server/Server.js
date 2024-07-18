@@ -3,46 +3,49 @@ import UserRoutes from "../routes/User.routes.js";
 import cors from "cors";
 
 export default class Server {
-    #app;
-    #host;
-    #port;
-    #clientUrl;
-    #server;
-    #userRouter;
+  #app;
+  #host;
+  #port;
+  #clientUrl;
+  #server;
+  #userRouter;
 
-    constructor(port, host) {
-        this.#app = express();
-        this.#port = port;
-        this.#host = host;
-        // this.#clientUrl = clientUrl; // TODO - use this for CORS when client is ready
-        this.#server = null;
-        this.#userRouter = new UserRoutes();
-    }
+  constructor(port, host) {
+    this.#app = express();
+    this.#port = port;
+    this.#host = host;
+    // this.#clientUrl = clientUrl; // TODO - use this for CORS when client is ready
+    this.#server = null;
+    this.#userRouter = new UserRoutes();
+  }
 
-    getApp = () => {
-        return this.#app;
+  getApp = () => {
+    return this.#app;
+  };
+
+  start = () => {
+    // Cors options
+    const corsOptions = {
+      origin: "*",
     };
 
-    start = () => {
-        // Cors options
-        const corsOptions = {
-            origin: "*",
-        };
+    // Start listening
+    this.#server = this.#app.listen(this.#port, this.#host, () => {
+      console.log(`Server is listening on http://${this.#host}:${this.#port}`);
+      console.log(`Cors options: ${corsOptions.origin}`);
+    });
 
-        // Start listening
-        this.#server = this.#app.listen(this.#port, this.#host, () => {
-            console.log(`Server is listening on http://${this.#host}:${this.#port}`);
-            console.log(`Cors options: ${corsOptions.origin}`);
-        });
+    this.#app.use(express.json());
+    this.#app.use(cors(corsOptions));
 
-        this.#app.use(express.json());
-        this.#app.use(cors(corsOptions));
+    // Routers
+    this.#app.use(
+      this.#userRouter.getRouteStartPoint(),
+      this.#userRouter.getRouter()
+    );
+  };
 
-        // Routers
-        this.#app.use(this.#userRouter.getRouteStartPoint(), this.#userRouter.getRouter());
-    };
-
-    close = () => {
-        this.#server?.close();
-    };
+  close = () => {
+    this.#server?.close();
+  };
 }

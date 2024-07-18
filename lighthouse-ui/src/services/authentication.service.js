@@ -1,14 +1,9 @@
 import axios from "axios";
-
 import withErrorHandling from "./withErrorHandling";
 
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
-const dummyUser = {
-  id: 1,
-  username: "test user",
-  emailAddress: "test@user.com",
-};
+const authenticationEndpointRoot = `${import.meta.env.VITE_APP_API_ROOT}/user`;
 
 /**
  * Registers a new user.
@@ -16,8 +11,10 @@ const dummyUser = {
  * @returns {Promise<Object>} - A promise that resolves to the response data.
  */
 export const register = async (newUserSubmission) => {
+  let url = `${authenticationEndpointRoot}/register`;
   return await withErrorHandling(async () => {
-    return dummyUser;
+    const response = await axios.post(url, newUserSubmission);
+    return response.data;
   });
 };
 
@@ -30,10 +27,9 @@ export const register = async (newUserSubmission) => {
  * @returns {Promise<Object>} - A promise that resolves to the response data.
  */
 export const signIn = async (userCredentials) => {
+  let url = `${authenticationEndpointRoot}/login`;
   return await withErrorHandling(async () => {
-    const response = {
-      data: { dummyUser },
-    };
+    const response = await axios.post(url, userCredentials);
     localStorage.setItem(`user`, JSON.stringify(response.data));
     return response.data;
   });

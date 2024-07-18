@@ -23,6 +23,11 @@ export default function SignInButton({
     onClose();
   };
 
+  const handleCloseModal = () => {
+    handleClearErrors();
+    onClose();
+  };
+
   return (
     <>
       <Button
@@ -32,7 +37,7 @@ export default function SignInButton({
         SIGN-IN
       </Button>
       {doShowForm && (
-        <Modal onClose={onClose}>
+        <Modal onClose={handleCloseModal}>
           <UserDetailsForm
             headingText="Sign-In"
             submitButtonText={"Submit"}

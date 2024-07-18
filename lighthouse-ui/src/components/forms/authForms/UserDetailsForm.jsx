@@ -52,6 +52,7 @@ export default function UserDetailsForm({
   const isFormValidated =
     doSkipValidation || UserDetailsValidator.isValidated(submission);
 
+  submission.email = submission.emailAddress;
   const updatesMade =
     !defaultValues ||
     Object.keys(activeFields).some((field) => {

@@ -15,7 +15,8 @@ function App() {
         pauseOnFocusLoss={false}
         draggable={false}
         pauseOnHover={false}
-        autoClose={3200}
+        autoClose={3500}
+        position="bottom-right"
       />
     </AppContextProvider>
   );

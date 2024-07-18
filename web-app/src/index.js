@@ -3,11 +3,13 @@ import Database from "./db/Database.js";
 import Server from "./server/Server.js";
 
 Config.load();
-const { PORT, HOST, CLIENT_URL } = process.env;
+const { SERVER_PORT, SERVER_HOST, CLIENT_URL } =
+    process.env;
 
-// Add Routes
-const server = new Server(PORT, HOST, CLIENT_URL);
-const database = new Database();
+const database = Database.getInstance();
+await database.connect();
+
+// Start server and db connection
+const server = new Server(SERVER_PORT, SERVER_HOST, CLIENT_URL);
 
 server.start();
-await database.connect();

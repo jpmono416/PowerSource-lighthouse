@@ -1,41 +1,71 @@
-import pkg from "pg";
-const { Pool } = pkg;
+import { Sequelize } from "sequelize";
+import Config from "../config/Config.js";
 
-const pool = new Pool({
-    user: "postgres",
-    host: "localhost",
-    database: "postgres",
-    password: "password",
-    port: 5432,
-});
+class Database {
+    static instance;
+    dbName;
+    dbUser;
+    dbPassword;
+    dbHost;
+    dbPort;
+    sequelize;
 
-export default class Database {
-    query = async (query, params) => {
-        try {
-            return await pool.query(query, params);
-        } catch (error) {
-            console.error("Error executing query: " + error.message);
-            throw new Error("Error executing query: " + error.message);
+    constructor() {
+        if (Database.instance) {
+            console.log("Returning instance");
+            return Database.instance;
         }
-    };
 
-    connect = async () => {
+        Config.load();
+        const { DB_NAME, DB_USER, DB_PASS, DB_HOST, DB_PORT } = process.env;
+        console.log("Vars: ", DB_NAME, DB_USER, DB_PASS, DB_HOST, DB_PORT);
+
+        this.dbName = DB_NAME;
+        this.dbUser = DB_USER;
+        this.dbPassword = DB_PASS;
+        this.dbHost = DB_HOST;
+        this.dbPort = DB_PORT;
+        this.sequelize = new Sequelize(this.dbName, this.dbUser, this.dbPassword, {
+            host: this.dbHost,
+            dialect: "postgres",
+            port: this.dbPort,
+            logging: false,
+        });
+
+        Database.instance = this;
+        // console.log("DB Instance created: ", Database.instance);
+    }
+
+    async connect() {
         try {
-            await pool.connect();
+            await this.sequelize.authenticate();
             console.log("Database connected successfully.");
         } catch (error) {
-            console.error("Error connecting to database: " + error.message);
-            throw new Error("Error connecting to database: " + error.message);
+            console.error("Error connecting to the database:", error);
+            throw new Error("Error connecting to the database: " + error.message);
         }
-    };
+    }
 
-    disconnect = async () => {
+    async disconnect() {
         try {
-            await pool.end();
+            await this.sequelize.close();
             console.log("Database disconnected successfully.");
         } catch (error) {
-            console.error("Error disconnecting from database: " + error.message);
-            throw new Error("Error disconnecting from database: " + error.message);
+            console.error("Error disconnecting from the database:", error);
+            throw new Error("Error disconnecting from the database: " + error.message);
         }
-    };
+    }
+
+    static getInstance() {
+        if (!Database.instance) {
+            new Database();
+        }
+        return Database.instance;
+    }
+
+    static getSequelize() {
+        return Database.getInstance().sequelize;
+    }
 }
+
+export default Database;

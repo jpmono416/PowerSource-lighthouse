@@ -8,7 +8,7 @@ const catalogueTableConfig = {
     },
     {
       label: "Organisation",
-      getCell: (row) => row.organisation,
+      getCell: (row) => row.organization,
     },
     {
       label: "Description",

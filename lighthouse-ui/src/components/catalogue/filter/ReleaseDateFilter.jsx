@@ -26,8 +26,8 @@ export default function ReleaseDateFilter({
 
   const handleChange = () => {
     const [from, to] = getValuesFromInputs();
-    updateQueryValueFor("from", from);
-    updateQueryValueFor("to", to);
+    updateQueryValueFor("createdDateFrom", from);
+    updateQueryValueFor("createdDateTo", to);
     updateValidation(from, to);
   };
 

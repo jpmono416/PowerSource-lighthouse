@@ -7,16 +7,8 @@ import ModelView from "../components/modelView/ModelView";
 export default function CatalogueRouter() {
   return (
     <Routes>
-      <Route
-        element={
-          <LLMCatalogueContextProvider>
-            <Outlet />
-          </LLMCatalogueContextProvider>
-        }
-      >
-        <Route path="/catalogue" element={<Catalogue />} />
-        <Route path="/catalogue/:modelId" element={<ModelView />} />
-      </Route>
+      <Route path="/catalogue" element={<Catalogue />} />
+      <Route path="/catalogue/:modelId" element={<ModelView />} />
     </Routes>
   );
 }

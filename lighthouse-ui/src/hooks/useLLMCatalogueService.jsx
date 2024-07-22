@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import QueryStringBuilder from "../utils/QueryStringBuilder";
 import * as llmService from "../services/llm.service";
@@ -21,12 +21,12 @@ export default function useLLMCatalogueService() {
     let errorMessages;
     if (Array.isArray(err)) errorMessages = err.map((err) => err.msg);
     else errorMessages = [err.message || err];
-    setAuthenticationErrors(errorMessages);
+    console.log(errorMessages);
+    setErrors(errorMessages);
   };
 
   const getLLMs = async () => {
     try {
-      console.log("QUERY STRING: " + (queryString || "-"));
       setErrors(null);
       setIsLoading(true);
       const response = await llmService.getLLMs(queryString);
@@ -46,6 +46,10 @@ export default function useLLMCatalogueService() {
     queryStringBuilder.setFilter(field, formattedValue);
     setQueryString(queryStringBuilder.getQueryString());
   };
+
+  useEffect(() => {
+    getLLMs();
+  }, []);
 
   return {
     errors,

@@ -1,4 +1,3 @@
-import QueryStringBuilder from "../../../utils/QueryStringBuilder";
 import FilterButton from "./FilterButton";
 import SearchBar from "./SearchBar";
 
@@ -7,8 +6,6 @@ export default function CatalogueFilter({
   updateQueryValueFor,
   refreshResults,
 }) {
-  const queryStringBuilder = new QueryStringBuilder();
-
   return (
     <div className="grid grid-cols-[1fr_auto] items-center gap-x-2 mb-6">
       <SearchBar

@@ -3,21 +3,12 @@ import { useLLMCatalogueContext } from "../../hooks/contexts/LLMCatalogueContext
 import CatalogueFilter from "./filter/CatalogueFilter";
 import catalogueTableConfig from "../../utils/tableConfigs/catalogueTableConfig";
 import Table from "../library/table/Table";
-import { useEffect } from "react";
 
 export default function Catalogue() {
-  const {
-    results,
-    refreshResults,
-    isLoading,
-    getLLMs,
-    updateQueryValueFor,
-    queryString,
-  } = useLLMCatalogueContext();
+  const { results, refreshResults, isLoading, updateQueryValueFor } =
+    useLLMCatalogueContext();
 
-  useEffect(() => {
-    getLLMs();
-  }, []);
+  console.log(results?.length);
 
   return (
     <div className="mt-8">

@@ -40,7 +40,9 @@ export default class LLMService {
     static async getAllLLMs() {
         try {
             const LLMModel = await this.getLLMModel();
-            const llms = await LLMModel.findAll();
+            const llms = await LLMModel.findAll({
+                order: [["name", "ASC"]],
+            });
             return llms;
         } catch (error) {
             console.error("Error retrieving all LLMs:", error);

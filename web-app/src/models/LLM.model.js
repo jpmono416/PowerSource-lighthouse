@@ -1,4 +1,4 @@
-import { DataTypes, Op } from "sequelize";
+import { DataTypes } from "sequelize";
 import Database from "../db/Database.js";
 
 export const defineLLMModel = () => {

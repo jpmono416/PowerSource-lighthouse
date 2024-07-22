@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import { defineLLMModel } from "../models/LLM.model.js";
 
 export default class LLMService {
@@ -50,7 +51,7 @@ export default class LLMService {
                 if (filters.name) {
                     query.where.name = filters.name;
                 }
-                
+
                 if (filters.organization) {
                     query.where.organization = filters.organization;
                 }
@@ -59,12 +60,21 @@ export default class LLMService {
                     query.where.license = filters.license;
                 }
 
-                if(filters.access) {
+                if (filters.access) {
                     query.where.access = filters.access;
                 }
 
-                if(filters.modality) {
+                if (filters.modality) {
                     query.where.modality = filters.modality;
+                }
+
+                if (filters.createdDateFrom && filters.createdDateTo) {
+                    query.where.created_date = {
+                        [Op.between]: [
+                            new Date(filters.createdDateFrom),
+                            new Date(filters.createdDateTo),
+                        ],
+                    };
                 }
             }
             const llms = await LLMModel.findAll(query);

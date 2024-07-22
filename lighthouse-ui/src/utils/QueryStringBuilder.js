@@ -11,6 +11,10 @@ export default class QueryStringBuilder {
     return `?${queryElements.join("&")}`;
   }
 
+  getQueryValues() {
+    return this.#queries;
+  }
+
   setFilter(field, value) {
     if (!value) return delete this.#queries[field];
     this.#queries[field] = value.trim();

@@ -1,22 +1,22 @@
-import { useLLMCatalogueContext } from "../../hooks/contexts/LLMCatalogueContext";
+import { useMemo } from "react";
 
+import { useAppContext } from "../../hooks/contexts/AppContext";
+import { useLLMCatalogueContext } from "../../hooks/contexts/LLMCatalogueContext";
 import CatalogueFilter from "./filter/CatalogueFilter";
-import catalogueTableConfig from "../../utils/tableConfigs/catalogueTableConfig";
+import getCatalogueTableConfig from "../../utils/tableConfigs/catalogueTableConfig";
 import Table from "../library/table/Table";
 
 export default function Catalogue() {
-  const { results, refreshResults, isLoading, updateQueryValueFor } =
-    useLLMCatalogueContext();
+  const { screenSize } = useAppContext();
+  const { results, isLoading } = useLLMCatalogueContext();
 
-  console.log(results?.length);
+  const catalogueTableConfig = useMemo(() => {
+    return getCatalogueTableConfig(screenSize);
+  }, [screenSize]);
 
   return (
     <div className="mt-8">
-      <CatalogueFilter
-        isDisabled={isLoading}
-        updateQueryValueFor={updateQueryValueFor}
-        refreshResults={refreshResults}
-      />
+      <CatalogueFilter isDisabled={isLoading} />
       <Table
         config={catalogueTableConfig}
         data={results}

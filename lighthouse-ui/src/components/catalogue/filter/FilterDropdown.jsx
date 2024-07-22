@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { FaTrash } from "react-icons/fa";
 
-export default function FilterDropdown({ options, isDisabled, onChange }) {
-  const [selectedOption, setSelectedOption] = useState("");
+export default function FilterDropdown({
+  options,
+  isDisabled,
+  onChange,
+  defaultValue,
+}) {
+  const [selectedOption, setSelectedOption] = useState(defaultValue || "");
 
   const dropdownOptions = [
     <option key={"default"} value={""}>
@@ -26,6 +31,11 @@ export default function FilterDropdown({ options, isDisabled, onChange }) {
     onChange(selection);
   };
 
+  const handleClearFilter = () => {
+    setSelectedOption("");
+    onChange("");
+  };
+
   return (
     <div className="flex flex-row items-center justify-center gap-2 ">
       <select
@@ -40,7 +50,7 @@ export default function FilterDropdown({ options, isDisabled, onChange }) {
       {selectedOption && (
         <FaTrash
           className="text-2xl text-primary-400 cursor-pointer hover:text-primary-500"
-          onClick={() => setSelectedOption("")}
+          onClick={handleClearFilter}
         />
       )}
     </div>

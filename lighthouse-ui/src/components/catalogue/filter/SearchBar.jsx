@@ -4,6 +4,7 @@ export default function SearchBar({
   refreshResults,
   isDisabled,
   updateQueryValueFor,
+  defaultValue,
 }) {
   const handleChange = (e) => {
     updateQueryValueFor("name", e.target.value);
@@ -23,6 +24,7 @@ export default function SearchBar({
         placeholder="Search models"
         onChange={handleChange}
         disabled={isDisabled}
+        defaultValue={defaultValue}
       />
       <div className="absolute right-0 top-0 bottom-0 flex items-center justify-center">
         <CiSearch

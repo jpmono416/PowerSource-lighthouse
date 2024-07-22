@@ -6,6 +6,7 @@ export default function FilterButton({
   isDisabled,
   updateQueryValueFor,
   refreshResults,
+  defaultValues,
 }) {
   const [doShowModal, setDoShowModal] = useState(false);
 
@@ -37,6 +38,7 @@ export default function FilterButton({
         onClose={() => setDoShowModal(false)}
         updateQueryValueFor={updateQueryValueFor}
         handleApplyFilters={handleApplyFilters}
+        defaultValues={defaultValues}
       />
     </>
   );

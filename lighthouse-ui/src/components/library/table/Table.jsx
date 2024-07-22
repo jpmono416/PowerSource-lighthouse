@@ -6,7 +6,12 @@ export default function Table({ config, data, isLoading }) {
 
   return (
     <div className="relative" id="table-wrapper">
-      <table className="grid grid-cols-[repeat(3,auto)]">
+      <table
+        className="grid max-w-full overflow-hidden text-ellipsis"
+        style={{
+          gridTemplateColumns: `repeat(${config.columns.length}, auto)`,
+        }}
+      >
         <thead className="contents">
           <tr className="contents">
             <ColumnLabels columnConfig={config.columns} padX={cellPadding} />

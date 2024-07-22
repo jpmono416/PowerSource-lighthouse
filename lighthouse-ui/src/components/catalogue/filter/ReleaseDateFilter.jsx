@@ -6,6 +6,7 @@ export default function ReleaseDateFilter({
   isDisabled,
   updateQueryValueFor,
   validator,
+  defaultValues,
 }) {
   const [error, setError] = useState("");
 
@@ -42,6 +43,7 @@ export default function ReleaseDateFilter({
         id="from"
         disabled={isDisabled}
         onChange={handleChange}
+        defaultValue={defaultValues?.createdDateFrom || ""}
       />
       <label className={labelClasses} htmlFor="to">
         To
@@ -52,6 +54,7 @@ export default function ReleaseDateFilter({
         type="date"
         disabled={isDisabled}
         onChange={handleChange}
+        defaultValue={defaultValues?.createdDateTo || ""}
       />
       {error && <RenderedErrors errors={[error]} />}
     </>

@@ -11,6 +11,7 @@ export default function FilterModal({
   onClose,
   updateQueryValueFor,
   handleApplyFilters,
+  defaultValues,
 }) {
   const { organizations, licences, access, modalities } = catalogueFilterData;
   const validator = new FiltersValidator();
@@ -27,6 +28,7 @@ export default function FilterModal({
             isDisabled={!doShow}
             validator={validator}
             updateQueryValueFor={updateQueryValueFor}
+            defaultValues={defaultValues}
           />
         </div>
         <div className="mb-4">
@@ -35,6 +37,7 @@ export default function FilterModal({
             options={organizations}
             isDisabled={!doShow}
             onChange={(value) => updateQueryValueFor("organization", value)}
+            defaultValue={defaultValues.organization}
           />
         </div>
         <div className="mb-4">
@@ -43,6 +46,7 @@ export default function FilterModal({
             options={licences}
             isDisabled={!doShow}
             onChange={(value) => updateQueryValueFor("licence", value)}
+            defaultValue={defaultValues.licence}
           />
         </div>
         <div className="mb-4">
@@ -51,6 +55,7 @@ export default function FilterModal({
             options={access}
             isDisabled={!doShow}
             onChange={(value) => updateQueryValueFor("access", value)}
+            defaultValue={defaultValues.access}
           />
         </div>
         <div className="mb-6">
@@ -59,6 +64,7 @@ export default function FilterModal({
             options={modalities}
             isDisabled={!doShow}
             onChange={(value) => updateQueryValueFor("modality", value)}
+            defaultValue={defaultValues.modality}
           />
         </div>
 

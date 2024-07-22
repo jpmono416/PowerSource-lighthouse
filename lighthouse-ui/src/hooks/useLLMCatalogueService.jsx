@@ -8,6 +8,7 @@ export default function useLLMCatalogueService() {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState(null);
   const [queryString, setQueryString] = useState("");
+  const [queryValues, setQueryValues] = useState({});
 
   const queryStringBuilder = useMemo(() => new QueryStringBuilder(), []);
 
@@ -21,7 +22,6 @@ export default function useLLMCatalogueService() {
     let errorMessages;
     if (Array.isArray(err)) errorMessages = err.map((err) => err.msg);
     else errorMessages = [err.message || err];
-    console.log(errorMessages);
     setErrors(errorMessages);
   };
 
@@ -42,9 +42,11 @@ export default function useLLMCatalogueService() {
   const refreshResults = () => getLLMs();
 
   const updateQueryValueFor = (field, value) => {
+    console.log(field, value);
     const formattedValue = value.toString().trim();
     queryStringBuilder.setFilter(field, formattedValue);
     setQueryString(queryStringBuilder.getQueryString());
+    setQueryValues(queryStringBuilder.getQueryValues());
   };
 
   useEffect(() => {
@@ -56,6 +58,7 @@ export default function useLLMCatalogueService() {
     getLLMs,
     isLoading,
     queryString,
+    queryValues,
     refreshResults,
     results,
     updateQueryValueFor,

@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 
 import Home from "../components/home/Home";
-import Catalogue from "../components/catalogue/Catalogue";
 import Compare from "../components/compare/Compare";
 import TabbedRoutes from "../components/library/TabbedRoutes";
 import CatalogueRouter from "./CatalogueRouter";
+import { LLMCatalogueContextProvider } from "../hooks/contexts/LLMCatalogueContext";
 
 const modelPaths = [
   {

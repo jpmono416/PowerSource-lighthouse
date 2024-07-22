@@ -11,13 +11,13 @@ export default function ModelView() {
 
   return (
     <div className="mt-6">
-      <Link to="/models/catalogue" className="text-primary-700">
+      <Link to={-1} className="text-primary-700">
         {"< Back to list"}
       </Link>
       <div className="flex flex-col items-center ">
         <h2 className="text-3xl text-secondary-700 font-light">{model.name}</h2>
         <h3 className="text-lg text-secondary-600 font-light">
-          {`Created by ${model.organisation}`}
+          {`Created by ${model.organization}`}
         </h3>
       </div>
     </div>

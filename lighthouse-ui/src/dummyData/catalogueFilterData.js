@@ -187,3 +187,5 @@ const catalogueFilterData = {
     "code",
   ],
 };
+
+export default catalogueFilterData;

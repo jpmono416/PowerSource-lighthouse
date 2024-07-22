@@ -1,14 +1,24 @@
 import { useNavigate } from "react-router-dom";
 
 import RowCells from "./RowCells";
+import Skeleton from "./Skeleton";
 
-export default function Rows({ rowData, columns, getKey, getLink, padX }) {
+export default function Rows({
+  rowData,
+  columns,
+  getKey,
+  getLink,
+  padX,
+  isLoading,
+}) {
   const navigate = useNavigate();
 
   const handleClick = (row) => {
     if (!getLink || !getLink(row)) return;
     navigate(getLink(row));
   };
+
+  if (!rowData || isLoading) return <Skeleton columns={columns} padX={padX} />;
 
   return rowData.map((row) => {
     return (

@@ -42,7 +42,6 @@ export default function useLLMCatalogueService() {
   const refreshResults = () => getLLMs();
 
   const updateQueryValueFor = (field, value) => {
-    console.log(field, value);
     const formattedValue = value.toString().trim();
     queryStringBuilder.setFilter(field, formattedValue);
     setQueryString(queryStringBuilder.getQueryString());

@@ -47,7 +47,7 @@ export default function SignInButton({
             handleClearErrors={handleClearErrors}
             doSkipValidation
             activeFields={{
-              emailAddress: true,
+              email: true,
               password: true,
             }}
           />

@@ -3,6 +3,7 @@ export default function RowCells({ rowData, columns, padX }) {
     return (
       <td
         key={column.label}
+        role="cell"
         className="w-full h-full flex flex-col justify-center"
         style={{
           backgroundColor: "inherit",

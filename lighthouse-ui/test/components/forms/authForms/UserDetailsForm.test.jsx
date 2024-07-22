@@ -125,13 +125,13 @@ describe("User details form tests: ", () => {
   describe("Registration form configuration tests: ", () => {
     const testRegistrationFormConfig = {
       username: true,
-      emailAddress: true,
+      email: true,
       password: true,
       confirmPassword: true,
     };
     const expectedSubmission = {
       username: "test-username",
-      emailAddress: "test@email.com",
+      email: "test@email.com",
       password: "password12$",
     };
     let onSubmitSpy;
@@ -179,7 +179,7 @@ describe("User details form tests: ", () => {
             target: { value: expectedSubmission.username },
           });
           fireEvent.change(emailAddressInputField, {
-            target: { value: expectedSubmission.emailAddress },
+            target: { value: expectedSubmission.email },
           });
           fireEvent.change(passwordInputField, {
             target: { value: expectedSubmission.password },
@@ -221,11 +221,11 @@ describe("User details form tests: ", () => {
 
   describe("Sign-In form configuration tests: ", () => {
     const testSignInFormConfig = {
-      emailAddress: true,
+      email: true,
       password: true,
     };
     const expectedSubmission = {
-      emailAddress: "test@email.com",
+      email: "test@email.com",
       password: "password12$",
     };
     let onSubmitSpy;
@@ -268,7 +268,7 @@ describe("User details form tests: ", () => {
       //Act
       await act(async () => {
         fireEvent.change(emailAddressInputField, {
-          target: { value: expectedSubmission.emailAddress },
+          target: { value: expectedSubmission.email },
         });
         fireEvent.change(passwordInputField, {
           target: { value: expectedSubmission.password },
@@ -277,75 +277,6 @@ describe("User details form tests: ", () => {
       });
       //Assert
       expect(onSubmitSpy).toBeCalledWith(expectedSubmission);
-    });
-  });
-
-  describe("Default fields tests: ", () => {
-    const testActiveFields = {
-      username: true,
-      emailAddress: true,
-    };
-    const testDefaultValues = {
-      username: "test-username",
-      emailAddress: "test@emailaddress.com",
-    };
-    const testSubmitButtonText = "submit";
-    let onSubmitSpy;
-    let emailAddressInputField;
-    let usernameInputField;
-
-    beforeEach(() => {
-      onSubmitSpy = vi.fn();
-      render(
-        <UserDetailsForm
-          headingText={"Default fields test"}
-          submitButtonText={testSubmitButtonText}
-          activeFields={testActiveFields}
-          defaultValues={testDefaultValues}
-          onSubmit={onSubmitSpy}
-          doSkipValidation
-        />
-      );
-      emailAddressInputField = screen.getByTitle(/email address/i);
-      usernameInputField = screen.getByTitle(/username/i);
-    });
-
-    afterEach(() => {
-      onSubmitSpy = null;
-      emailAddressInputField = null;
-      usernameInputField = null;
-    });
-
-    //? TEST:
-    test("It should pre-populate fields where default values are provided for email address and password", async () => {
-      //Assert
-      expect(usernameInputField.value).toBe(testDefaultValues.username);
-      expect(emailAddressInputField.value).toBe(testDefaultValues.emailAddress);
-    });
-
-    //? TEST:
-    test("It should disable the save button when all fields match the default values", async () => {
-      //Act
-      await act(async () => {
-        fireEvent.click(screen.getByText(testSubmitButtonText));
-      });
-      //Assert
-      expect(onSubmitSpy).toBeCalledTimes(0);
-    });
-
-    //? TEST:
-    test("It should not disable the save button when just one field does not match its default value", async () => {
-      //Act
-      await act(async () => {
-        fireEvent.change(usernameInputField, {
-          target: { value: "updated-username" },
-        });
-      });
-      await act(async () => {
-        fireEvent.click(screen.getByText(testSubmitButtonText));
-      });
-      //Assert
-      expect(onSubmitSpy).toBeCalledTimes(1);
     });
   });
 });

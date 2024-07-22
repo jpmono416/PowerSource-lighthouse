@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Button from "../../library/Button";
 import ConfirmPasswordInputField from "./inputFields/ConfirmPasswordInputField";
@@ -17,12 +17,9 @@ export default function UserDetailsForm({
   handleClearErrors,
   onSubmit,
   doSkipValidation,
-  defaultValues,
 }) {
-  const [username, setUsername] = useState(defaultValues?.username ?? "");
-  const [emailAddress, setEmailAddress] = useState(
-    defaultValues?.emailAddress ?? ""
-  );
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -32,15 +29,9 @@ export default function UserDetailsForm({
     setter(value);
   };
 
-  useEffect(() => {
-    if (defaultValues?.username) setUsername(defaultValues.username);
-    if (defaultValues?.emailAddress)
-      setEmailAddress(defaultValues.emailAddress);
-  }, [defaultValues]);
-
   const submission = {
     username,
-    emailAddress,
+    email,
     password,
     confirmPassword,
   };
@@ -52,15 +43,7 @@ export default function UserDetailsForm({
   const isFormValidated =
     doSkipValidation || UserDetailsValidator.isValidated(submission);
 
-  submission.email = submission.emailAddress;
-  const updatesMade =
-    !defaultValues ||
-    Object.keys(activeFields).some((field) => {
-      return submission[field] !== defaultValues[field];
-    });
-
-  const submitIsDisabled =
-    errors?.length > 0 || !isFormValidated || !updatesMade;
+  const submitIsDisabled = errors?.length > 0 || !isFormValidated;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -88,10 +71,10 @@ export default function UserDetailsForm({
       />
 
       <EmailAddressInputField
-        emailAddressValue={emailAddress}
+        emailAddressValue={email}
         isDisabled={isLoading}
-        onChange={(e) => handleUpdate(setEmailAddress, e.target.value)}
-        isActive={activeFields?.emailAddress}
+        onChange={(e) => handleUpdate(setEmail, e.target.value)}
+        isActive={activeFields?.email}
         doSkipValidation={doSkipValidation}
       />
 

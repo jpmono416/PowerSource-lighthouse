@@ -8,16 +8,16 @@ const rowDataConfig = {
 const allColumns = [
   {
     label: "Name",
-    getCell: (row) => row.name,
+    getCell: (row) => row.name ?? "-",
   },
   {
     label: "Organisation",
-    getCell: (row) => row.organization,
+    getCell: (row) => row.organization ?? "-",
   },
   {
     label: "Description",
     getCell: (row) => {
-      const fullDescription = row.description;
+      const fullDescription = row.description ?? "-";
       let truncatedDescription = fullDescription.slice(0, 64);
       if (truncatedDescription !== fullDescription)
         truncatedDescription += "...";
@@ -25,7 +25,7 @@ const allColumns = [
     },
   },
   {
-    label: "Created At",
+    label: "Created",
     getCell: (row) =>
       row.created_date
         ? new Date(row.created_date).toLocaleDateString("en-gb")
@@ -33,15 +33,15 @@ const allColumns = [
   },
   {
     label: "Modality",
-    getCell: (row) => row.modality,
+    getCell: (row) => row.modality ?? "-",
   },
   {
     label: "Access",
-    getCell: (row) => row.access,
+    getCell: (row) => row.access ?? "-",
   },
   {
     label: "Licence",
-    getCell: (row) => row.license,
+    getCell: (row) => row.license ?? "-",
   },
 ];
 

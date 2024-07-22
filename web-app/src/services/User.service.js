@@ -14,14 +14,12 @@ export default class UserService {
         const hashedPassword = await bcrypt.hash(password, 10);
         try {
             const UserModel = await this.getUserModel();
-            console.log("About to create object");
             const user = await UserModel.create({
                 email,
                 password: hashedPassword,
                 username,
                 roles,
             });
-            console.log("Object created", user);
             return user;
         } catch (error) {
             console.error("Error creating user:", error);

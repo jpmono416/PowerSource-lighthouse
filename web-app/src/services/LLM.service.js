@@ -67,9 +67,7 @@ export default class LLMService {
                     query.where.modality = filters.modality;
                 }
             }
-            const llms = await LLMModel.findAll({
-                order: [["name", "ASC"]],
-            });
+            const llms = await LLMModel.findAll(query);
             return llms;
         } catch (error) {
             console.error("Error retrieving all LLMs:", error);

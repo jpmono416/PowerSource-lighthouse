@@ -1,7 +1,6 @@
 import LLMService from "../services/LLM.service.js";
 
 export default class LLMController {
-
     static getLLMCount = async (req, res) => {
         try {
             const count = await LLMService.getLLMCount();
@@ -35,7 +34,9 @@ export default class LLMController {
         try {
             if (!req.params || !req.params.id)
                 return res.status(400).json({ error: "Invalid LLM ID" });
+
             const llm = await LLMService.getLLMById(req.params.id);
+
             if (!llm) return res.status(404).json({ error: "LLM not found" });
             res.status(200).json(llm);
         } catch (error) {

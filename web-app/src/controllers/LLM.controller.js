@@ -23,7 +23,8 @@ export default class LLMController {
 
     static getAllLLMs = async (req, res) => {
         try {
-            const llms = await LLMService.getAllLLMs();
+            const filters = req.query;
+            const llms = await LLMService.getAllLLMs(filters);
             res.status(200).json(llms);
         } catch (error) {
             res.status(500).json({ error: error.message });

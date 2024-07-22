@@ -37,9 +37,36 @@ export default class LLMService {
         }
     }
 
-    static async getAllLLMs() {
+    static async getAllLLMs(filters) {
         try {
             const LLMModel = await this.getLLMModel();
+
+            // Build dynamic query
+            const query = {
+                where: {},
+                order: [["name", "ASC"]],
+            };
+            if (filters) {
+                if (filters.name) {
+                    query.where.name = filters.name;
+                }
+                
+                if (filters.organization) {
+                    query.where.organization = filters.organization;
+                }
+
+                if (filters.license) {
+                    query.where.license = filters.license;
+                }
+
+                if(filters.access) {
+                    query.where.access = filters.access;
+                }
+
+                if(filters.modality) {
+                    query.where.modality = filters.modality;
+                }
+            }
             const llms = await LLMModel.findAll({
                 order: [["name", "ASC"]],
             });

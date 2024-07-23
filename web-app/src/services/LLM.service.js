@@ -113,8 +113,10 @@ export default class LLMService {
                     .filter((value) => value[column]) // Remove null values
                     .map((value) => value[column]); // Extract the column value
 
-                distinctValues[column] =
-                    column === "modality" ? this.processModalities(filteredValues) : filteredValues;
+                //? Some filters are stored as a string with multiple values separated by ','
+                //? Modalities are comma-separated values on each entry, which are separated by ';' instead
+                const splitByChar = column === "modality" ? ";" : ",";
+                distinctValues[column] = this.processMultiValueStrings(filteredValues, splitByChar);
             }
 
             return distinctValues;
@@ -124,15 +126,14 @@ export default class LLMService {
         }
     }
 
-    //? Modalities are stored as a string with multiple values separated by ';' so they're treated differently
-    static processModalities(modalities) {
+    static processMultiValueStrings(values, splitBy = "") {
         const distinctModalities = new Set();
-        modalities.forEach((modality) => {
-            modality.split(";").forEach((subModality) => {
-                distinctModalities.add(subModality.trim());
+        values.forEach((value) => {
+            value.split(splitBy).forEach((subValue) => {
+                distinctModalities.add(subValue.trim());
             });
         });
 
         return Array.from(distinctModalities);
-    }   
+    }
 }

@@ -3,9 +3,9 @@ import FormInput from "../../../FormInput";
 import FormInputValidator from "../../../FormInputValidator";
 import ModalDetailsValidator from "../../../../../utils/validators/ModalDetailsValidator";
 
-export default function NameInput({
-  label = "Name",
-  nameValue,
+export default function PerceivedBusinessValueInput({
+  label = "Perceived Business Value (%)",
+  perceivedBusinessValue,
   isDisabled,
   onChange,
   isActive,
@@ -16,22 +16,17 @@ export default function NameInput({
   return (
     <FormInputValidator
       className="mb-2"
-      values={[nameValue]}
-      validator={ModalDetailsValidator.validateName}
+      values={[perceivedBusinessValue]}
+      validator={ModalDetailsValidator.validatePerceivedBusinessValue}
       doSkipValidation={doSkipValidation}
       doUseDarkText
     >
-      <FormItem
-        labelTitle={label}
-        doUseDarkText
-        maxWidth="max-w-[32rem]"
-        required
-      >
+      <FormItem labelTitle={label} doUseDarkText maxWidth="max-w-[32rem]">
         <FormInput
-          value={nameValue}
+          value={perceivedBusinessValue}
           title={label}
-          placeholder="Chat-GPT 4"
-          type="text"
+          placeholder="50"
+          type="number"
           isDisabled={isDisabled}
           onChange={onChange}
         />

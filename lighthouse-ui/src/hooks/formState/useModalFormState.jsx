@@ -13,11 +13,23 @@ export default function useModalFormState(defaultValues) {
   const [access, setAccess] = useState(defaultValues?.access || "");
   const [licence, setLicence] = useState(defaultValues?.licence || "");
   const [perceived_business_value, setPerceived_business_value] = useState(
-    defaultValues?.perceived_business_value || 0
+    defaultValues?.perceived_business_value || ""
   );
   const [business_readiness, setBusiness_readiness] = useState(
     defaultValues?.business_readiness || ""
   );
+
+  const submission = {
+    name,
+    description,
+    modality,
+    organization,
+    createdAt,
+    access,
+    licence,
+    perceived_business_value,
+    business_readiness,
+  };
 
   return {
     name,
@@ -38,5 +50,6 @@ export default function useModalFormState(defaultValues) {
     setPerceived_business_value,
     business_readiness,
     setBusiness_readiness,
+    submission,
   };
 }

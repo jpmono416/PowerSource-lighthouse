@@ -15,7 +15,7 @@ export default function ModalityInput({
 
   return (
     <FormInputValidator
-      className="mb-2"
+      className="mb-6"
       values={[modalityValue]}
       validator={ModalDetailsValidator.validateModality}
       doSkipValidation={doSkipValidation}

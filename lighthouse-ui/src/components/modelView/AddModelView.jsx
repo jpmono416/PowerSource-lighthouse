@@ -10,7 +10,7 @@ export default function AddModalView() {
       <h2 className="text-3xl text-secondary-700 font-light mb-6">
         Add an LLM
       </h2>
-      <LLMModalDetailsForm onSubmit={handleSubmit} />
+      <LLMModalDetailsForm onSubmit={handleSubmit} submitButtonText="Create" />
     </div>
   );
 }

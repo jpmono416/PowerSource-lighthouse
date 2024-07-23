@@ -3,9 +3,9 @@ import FormInput from "../../../FormInput";
 import FormInputValidator from "../../../FormInputValidator";
 import ModalDetailsValidator from "../../../../../utils/validators/ModalDetailsValidator";
 
-export default function NameInput({
-  label = "Name",
-  nameValue,
+export default function LicenceInput({
+  label = "Licence",
+  licenceValue,
   isDisabled,
   onChange,
   isActive,
@@ -15,22 +15,17 @@ export default function NameInput({
 
   return (
     <FormInputValidator
-      className="mb-2"
-      values={[nameValue]}
-      validator={ModalDetailsValidator.validateName}
+      className="mb-6"
+      values={[licenceValue]}
+      validator={ModalDetailsValidator.validateLicence}
       doSkipValidation={doSkipValidation}
       doUseDarkText
     >
-      <FormItem
-        labelTitle={label}
-        doUseDarkText
-        maxWidth="max-w-[32rem]"
-        required
-      >
+      <FormItem labelTitle={label} doUseDarkText maxWidth="max-w-[32rem]">
         <FormInput
-          value={nameValue}
+          value={licenceValue}
           title={label}
-          placeholder="Chat-GPT 4"
+          placeholder="MIT"
           type="text"
           isDisabled={isDisabled}
           onChange={onChange}

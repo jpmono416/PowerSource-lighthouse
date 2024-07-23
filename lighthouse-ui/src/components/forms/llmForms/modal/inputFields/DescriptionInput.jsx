@@ -20,7 +20,12 @@ export default function DescriptionInput({
       doSkipValidation={doSkipValidation}
       doUseDarkText
     >
-      <FormItem labelTitle={label} doUseDarkText maxWidth="max-w-[32rem]">
+      <FormItem
+        labelTitle={label}
+        doUseDarkText
+        maxWidth="max-w-[32rem]"
+        required
+      >
         {descriptionValue.length > 0 && (
           <p className="mt-2">{`${descriptionValue.length} characters`}</p>
         )}

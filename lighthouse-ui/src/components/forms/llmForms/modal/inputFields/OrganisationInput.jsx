@@ -15,13 +15,18 @@ export default function OrganisationInput({
 
   return (
     <FormInputValidator
-      className="mb-2"
+      className="mb-6"
       values={[organisationValue]}
       validator={ModalDetailsValidator.validateOrganisation}
       doSkipValidation={doSkipValidation}
       doUseDarkText
     >
-      <FormItem labelTitle={label} doUseDarkText maxWidth="max-w-[32rem]">
+      <FormItem
+        labelTitle={label}
+        doUseDarkText
+        maxWidth="max-w-[32rem]"
+        required
+      >
         <FormInput
           value={organisationValue}
           title={label}

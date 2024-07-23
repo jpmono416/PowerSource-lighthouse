@@ -103,8 +103,6 @@ export default class LLMService {
             let distinctValues = {};
 
             for (const column of filterColumns) {
-                //? Modalities are stored as a string with multiple values separated by ';' so they're treated differently
-                //? This function could be simplified if we had better data integrity and quality
                 const distinctColumnValues = await LLMModel.findAll({
                     attributes: [[fn("DISTINCT", col(column)), column]],
                     where: {},
@@ -126,7 +124,7 @@ export default class LLMService {
         }
     }
 
-    // Custom function to process modality values
+    //? Modalities are stored as a string with multiple values separated by ';' so they're treated differently
     static processModalities(modalities) {
         const distinctModalities = new Set();
         modalities.forEach((modality) => {
@@ -134,7 +132,7 @@ export default class LLMService {
                 distinctModalities.add(subModality.trim());
             });
         });
-        
+
         return Array.from(distinctModalities);
-    }
+    }   
 }

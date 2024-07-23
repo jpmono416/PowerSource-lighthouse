@@ -49,7 +49,7 @@ export default class LLMService {
             };
             if (filters) {
                 if (filters.name) {
-                    query.where.name = filters.name;
+                    query.where.name = { [Op.like]: `%${filters.name}%` };
                 }
 
                 if (filters.organization) {
@@ -65,7 +65,7 @@ export default class LLMService {
                 }
 
                 if (filters.modality) {
-                    query.where.modality = filters.modality;
+                    query.where.modality = { [Op.like]: `%${filters.modality}%` };
                 }
 
                 if (filters.createdDateFrom && filters.createdDateTo) {

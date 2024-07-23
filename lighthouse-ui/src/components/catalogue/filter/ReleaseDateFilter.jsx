@@ -8,10 +8,7 @@ export default function ReleaseDateFilter({
   validator,
   defaultValues,
 }) {
-  const [error, setError] = useState("");
-
-  const labelClasses = "block text-secondary-50 font-light mb-1";
-  const inputClasses = "px-2 py-1 mb-4";
+  const [error, setError] = useState(validator.validateFrom()[1] || "");
 
   const getValuesFromInputs = () => {
     const from = document.getElementById("from").value;
@@ -32,6 +29,9 @@ export default function ReleaseDateFilter({
     updateValidation(from, to);
   };
 
+  const labelClasses = "block text-secondary-50 font-light mb-1";
+  const inputClasses = "px-2 py-1 mb-4";
+
   return (
     <>
       <label className={labelClasses} htmlFor="from">
@@ -39,6 +39,7 @@ export default function ReleaseDateFilter({
       </label>
       <input
         className={inputClasses}
+        title="From"
         type="date"
         id="from"
         disabled={isDisabled}
@@ -49,6 +50,7 @@ export default function ReleaseDateFilter({
         To
       </label>
       <input
+        title="To"
         id="to"
         className={inputClasses}
         type="date"

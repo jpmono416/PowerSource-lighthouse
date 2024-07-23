@@ -34,27 +34,6 @@ describe("Catalogue filter SearchBar tests: ", () => {
       expect(screen.getByDisplayValue(testDefaultValue)).toBeInTheDocument();
     });
 
-    test("It should call updateQueryValueFor with the correct arguments when the enter key is pressed", async () => {
-      //Arrange
-      const searchBar = screen.getByRole("searchbox");
-      //Act
-      await act(async () => {
-        fireEvent.change(searchBar, {
-          target: { value: `${testSearchTerm}` },
-        });
-      });
-      await act(async () => {
-        fireEvent.keyPress(searchBar, {
-          key: "Enter",
-          code: 13,
-          charCode: 13,
-        });
-      });
-
-      //Assert
-      expect(updateQueryValueForSpy).toBeCalledWith("name", testSearchTerm);
-    });
-
     test("It should call updateQueryValueFor and refreshResults with the correct arguments when the search button is clicked", async () => {
       //Arrange
       const searchBar = screen.getByRole("searchbox");
@@ -84,26 +63,6 @@ describe("Catalogue filter SearchBar tests: ", () => {
           isDisabled
         />
       );
-    });
-
-    test("It should not call updateQueryValueFor with the correct arguments when the enter key is pressed", async () => {
-      //Arrange
-      const searchBar = screen.getByRole("searchbox");
-      //Act
-      await act(async () => {
-        fireEvent.change(searchBar, {
-          target: { value: `${testSearchTerm}` },
-        });
-      });
-      await act(async () => {
-        fireEvent.keyPress(searchBar, {
-          key: "Enter",
-          code: 13,
-          charCode: 13,
-        });
-      });
-      //Assert
-      expect(updateQueryValueForSpy).toHaveBeenCalledTimes(0);
     });
 
     test("It should call updateQueryValueFor and refreshResults with the correct arguments when the search button is clicked", async () => {

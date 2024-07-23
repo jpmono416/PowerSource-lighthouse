@@ -1,3 +1,5 @@
+import { useMemo } from "react";
+
 import Button from "../../library/Button";
 import FilterDropdown from "./FilterDropdown";
 import FilterValidator from "../../../utils/validators/FilterValidator";
@@ -14,7 +16,17 @@ export default function FilterModal({
   defaultValues,
 }) {
   const { organizations, licences, access, modalities } = catalogueFilterData;
-  const validator = new FilterValidator();
+
+  const validator = useMemo(
+    () =>
+      new FilterValidator({
+        from: defaultValues.createdDateFrom,
+        to: defaultValues.createdDateTo,
+      }),
+    []
+  );
+  console.log(validator, defaultValues);
+  const isDisabled = !validator.isValid()[0];
 
   const headingClasses = "text-xl text-secondary-50 font-light mb-2";
 
@@ -69,7 +81,7 @@ export default function FilterModal({
         </div>
 
         <div className="flex justify-center gap-x-2">
-          <Button primary onClick={handleApplyFilters}>
+          <Button primary onClick={handleApplyFilters} isDisabled={isDisabled}>
             Apply Filters
           </Button>
         </div>

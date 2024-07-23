@@ -2,11 +2,20 @@ export default class FilterValidator {
   #from;
   #to;
 
+  constructor(defaultValues) {
+    this.#from = defaultValues?.from;
+    this.#to = defaultValues?.to;
+  }
+
   setFrom(value) {
     this.#from = value;
   }
   setTo(value) {
     this.#to = value;
+  }
+
+  isValid() {
+    return this.validateFrom();
   }
 
   validateFrom() {

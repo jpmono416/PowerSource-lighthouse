@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
-
 import { afterEach, beforeEach, describe } from "vitest";
+
 import SearchBar from "../../../../src/components/catalogue/filter/SearchBar";
 
 describe("Catalogue filter SearchBar tests: ", () => {

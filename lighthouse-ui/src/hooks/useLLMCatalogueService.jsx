@@ -5,6 +5,7 @@ import * as llmService from "../services/llm.service";
 
 export default function useLLMCatalogueService() {
   const [results, setResults] = useState(null);
+  const [filterOptions, setFilterOptions] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState(null);
   const [queryString, setQueryString] = useState("");
@@ -39,6 +40,20 @@ export default function useLLMCatalogueService() {
     }
   };
 
+  const getFilterOptions = async () => {
+    try {
+      setErrors(null);
+      setIsLoading(true);
+      const response = await llmService.getLLMCatalogueFilterOptions();
+      setFilterOptions(response);
+      return response;
+    } catch (err) {
+      handleErrors(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const refreshResults = () => getLLMs();
 
   const updateQueryValueFor = (field, value) => {
@@ -48,14 +63,20 @@ export default function useLLMCatalogueService() {
     setQueryValues(queryStringBuilder.getQueryValues());
   };
 
+  const initialiseData = async () => {
+    await getFilterOptions();
+    await getLLMs();
+  };
+
   useEffect(() => {
-    getLLMs();
+    initialiseData();
   }, []);
 
   return {
     errors,
     getLLMs,
     isLoading,
+    filterOptions,
     queryString,
     queryValues,
     refreshResults,

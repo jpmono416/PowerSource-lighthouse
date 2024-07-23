@@ -19,7 +19,7 @@ export default function FilterDropdown({
     let optionLabel = option.slice(0, 32);
     if (optionLabel !== option) optionLabel += "...";
     dropdownOptions.push(
-      <option key={option} value={option}>
+      <option key={option} value={option} role="menuitem">
         {optionLabel}
       </option>
     );
@@ -39,6 +39,7 @@ export default function FilterDropdown({
   return (
     <div className="flex flex-row items-center justify-center gap-2 ">
       <select
+        role="menu"
         placeholder="Any"
         value={selectedOption}
         onChange={handleChange}
@@ -49,6 +50,7 @@ export default function FilterDropdown({
       </select>
       {selectedOption && (
         <FaTrash
+          title="Clear filter"
           className="text-2xl text-primary-400 cursor-pointer hover:text-primary-500"
           onClick={handleClearFilter}
         />

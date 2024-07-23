@@ -1,6 +1,6 @@
 import axios from "axios";
 import withErrorHandling from "./withErrorHandling";
-import catalogueData from "../dummyData/catalogueData";
+import catalogueFilterData from "../dummyData/catalogueFilterData";
 
 // axios.defaults.withCredentials = true;
 
@@ -10,6 +10,17 @@ export const getLLMs = async (queryString) => {
   let url = `${llmEndpointRoot}${queryString}`;
   return await withErrorHandling(async () => {
     const response = await axios.get(url);
+    return response.data;
+  });
+};
+
+export const getLLMCatalogueFilterOptions = async (queryString) => {
+  let url = `${llmEndpointRoot}/filter-options`;
+  return await withErrorHandling(async () => {
+    const response = await new Promise((resolve, reject) => {
+      resolve({ data: catalogueFilterData });
+    });
+    // const response = await axios.get(url);
     return response.data;
   });
 };

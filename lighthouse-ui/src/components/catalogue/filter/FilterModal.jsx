@@ -14,8 +14,10 @@ export default function FilterModal({
   updateQueryValueFor,
   handleApplyFilters,
   defaultValues,
+  filterOptions,
 }) {
-  const { organizations, licences, access, modalities } = catalogueFilterData;
+  if (!filterOptions) return;
+  const { organizations, licences, access, modalities } = filterOptions;
 
   const validator = useMemo(
     () =>
@@ -25,7 +27,6 @@ export default function FilterModal({
       }),
     []
   );
-  console.log(validator, defaultValues);
   const isDisabled = !validator.isValid()[0];
 
   const headingClasses = "text-xl text-secondary-50 font-light mb-2";

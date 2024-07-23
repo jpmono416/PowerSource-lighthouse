@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
-
 import { afterEach, beforeEach, describe, expect } from "vitest";
+
 import ReleaseDateFilter from "../../../../src/components/catalogue/filter/ReleaseDateFilter";
 
 describe("Release date filter tests: ", () => {

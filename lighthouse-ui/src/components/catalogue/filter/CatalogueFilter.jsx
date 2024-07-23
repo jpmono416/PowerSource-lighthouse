@@ -3,7 +3,7 @@ import FilterButton from "./FilterButton";
 import SearchBar from "./SearchBar";
 
 export default function CatalogueFilter({ isDisabled }) {
-  const { updateQueryValueFor, refreshResults, queryValues } =
+  const { updateQueryValueFor, refreshResults, queryValues, filterOptions } =
     useLLMCatalogueContext();
 
   return (
@@ -19,6 +19,7 @@ export default function CatalogueFilter({ isDisabled }) {
         updateQueryValueFor={updateQueryValueFor}
         isDisabled={isDisabled}
         defaultValues={queryValues}
+        filterOptions={filterOptions}
       />
     </div>
   );

@@ -75,6 +75,14 @@ export default class LLMService {
                             new Date(filters.createdDateTo),
                         ],
                     };
+                } else if (filters.createdDateFrom) {
+                    query.where.created_date = {
+                        [Op.gte]: new Date(filters.createdDateFrom),
+                    };
+                } else if (filters.createdDateTo) {
+                    query.where.created_date = {
+                        [Op.lte]: new Date(filters.createdDateTo),
+                    };
                 }
             }
             const llms = await LLMModel.findAll(query);

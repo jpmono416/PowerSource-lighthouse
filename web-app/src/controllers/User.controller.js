@@ -16,7 +16,7 @@ export default class UserController {
 
     static getUserByEmail = async (req, res) => {
         try {
-            if (!req.params) return res.status(400).json({ error: "Invalid email" });
+            if (!req.params.email) return res.status(400).json({ error: "Invalid email" });
             const user = await UserService.getUserByEmail(req.params.email);
             if (!user) return res.status(404).json({ error: "User not found" });
 

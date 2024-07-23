@@ -1,5 +1,6 @@
 import express from "express";
 import UserRoutes from "../routes/User.routes.js";
+import LLMRoutes from "../routes/LLM.routes.js";
 import cors from "cors";
 
 export default class Server {
@@ -9,6 +10,7 @@ export default class Server {
   #clientUrl;
   #server;
   #userRouter;
+  #llmRouter;
 
   constructor(port, host) {
     this.#app = express();
@@ -17,6 +19,7 @@ export default class Server {
     // this.#clientUrl = clientUrl; // TODO - use this for CORS when client is ready
     this.#server = null;
     this.#userRouter = new UserRoutes();
+    this.#llmRouter = new LLMRoutes();
   }
 
   getApp = () => {
@@ -43,6 +46,12 @@ export default class Server {
       this.#userRouter.getRouteStartPoint(),
       this.#userRouter.getRouter()
     );
+
+    this.#app.use(
+      this.#llmRouter.getRouteStartPoint(),
+      this.#llmRouter.getRouter()
+    );
+    
   };
 
   close = () => {

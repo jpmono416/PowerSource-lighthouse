@@ -47,12 +47,11 @@ export default class LLMController {
     static getMatrixLLMs = async (req, res) => {
         try {
             const matrixLLMs = await LLMService.getMatrixLLMs();
-            console.log(matrixLLMs);
             res.status(200).json(matrixLLMs);
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
-    }
+    };
 
     static getDistinctFilterValues = async (req, res) => {
         try {

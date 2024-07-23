@@ -7,6 +7,7 @@ export default function SearchBar({
   defaultValue,
 }) {
   const handleChange = (e) => {
+    if (isDisabled) return;
     updateQueryValueFor("name", e.target.value);
   };
 
@@ -19,6 +20,7 @@ export default function SearchBar({
   return (
     <form className="relative" onSubmit={handleSearch}>
       <input
+        role="searchbox"
         className="w-full p-2"
         type="text"
         placeholder="Search models"

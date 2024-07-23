@@ -1,4 +1,4 @@
-export default class FiltersValidator {
+export default class FilterValidator {
   #from;
   #to;
 

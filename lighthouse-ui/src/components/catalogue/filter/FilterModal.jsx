@@ -1,10 +1,10 @@
-import FiltersValidator from "../../../utils/validators/FIltersValidator";
-import SlidingDrawer from "../../library/SlidingDrawer";
-import ReleaseDateFilter from "./ReleaseDateFilter";
-
 import Button from "../../library/Button";
-import catalogueFilterData from "../../../dummyData/catalogueFilterData";
 import FilterDropdown from "./FilterDropdown";
+import FilterValidator from "../../../utils/validators/FilterValidator";
+import ReleaseDateFilter from "./ReleaseDateFilter";
+import SlidingDrawer from "../../library/SlidingDrawer";
+
+import catalogueFilterData from "../../../dummyData/catalogueFilterData";
 
 export default function FilterModal({
   doShow,
@@ -14,7 +14,7 @@ export default function FilterModal({
   defaultValues,
 }) {
   const { organizations, licences, access, modalities } = catalogueFilterData;
-  const validator = new FiltersValidator();
+  const validator = new FilterValidator();
 
   const headingClasses = "text-xl text-secondary-50 font-light mb-2";
 

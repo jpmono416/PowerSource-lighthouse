@@ -96,6 +96,23 @@ export default class LLMService {
         }
     }
 
+    //* Get all LLMs that have a non-null value for the database fields 'perceived_business_value' and 'business_readiness'
+    static async getMatrixLLMs() {
+        try {
+            const LLMModel = await this.getLLMModel();
+            const matrixLLMs = await LLMModel.findAll({
+                where: {
+                    perceived_business_value: { [Op.ne]: "" },
+                    business_readiness: { [Op.ne]: "" },
+                },
+            });
+            return matrixLLMs;
+        } catch (error) {
+            console.error("Error retrieving matrix LLMs:", error);
+            throw error;
+        }
+    }
+
     static async getDistinctFilterValues() {
         try {
             const LLMModel = await this.getLLMModel();

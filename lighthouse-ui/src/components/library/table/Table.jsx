@@ -14,7 +14,7 @@ export default function Table({ config, data, isLoading, noElementsMessage }) {
         }}
       >
         <thead className="contents">
-          <tr className="contents">
+          <tr className="contents" role="rowheader">
             <ColumnLabels columnConfig={config.columns} padX={cellPadding} />
           </tr>
         </thead>

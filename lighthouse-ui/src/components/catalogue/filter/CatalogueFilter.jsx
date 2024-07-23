@@ -7,7 +7,7 @@ export default function CatalogueFilter({ isDisabled }) {
     useLLMCatalogueContext();
 
   return (
-    <div className="grid grid-cols-[1fr_auto] items-center gap-x-2 mb-6">
+    <div className="grid grid-cols-[1fr_auto] items-center gap-x-2">
       <SearchBar
         refreshResults={refreshResults}
         updateQueryValueFor={updateQueryValueFor}

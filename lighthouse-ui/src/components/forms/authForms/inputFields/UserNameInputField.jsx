@@ -1,8 +1,10 @@
-import FormInput from "./FormInput";
-import FormInputValidator from "./FormInputValidator";
+import FormItem from "../../FormItem";
+import FormInput from "../../FormInput";
+import FormInputValidator from "../../FormInputValidator";
 import UserDetailsValidator from "../../../../utils/validators/UserDetailsValidator";
 
 export default function UserNameInputField({
+  label = "Username",
   userNameValue,
   isDisabled,
   onChange,
@@ -13,19 +15,21 @@ export default function UserNameInputField({
 
   return (
     <FormInputValidator
-      className="mb-2"
+      className="mb-2 max-w-[20rem]"
       values={[userNameValue]}
       validator={UserDetailsValidator.validateUsername}
       doSkipValidation={doSkipValidation}
     >
-      <FormInput
-        value={userNameValue}
-        labelTitle="Username"
-        placeholder="your-username"
-        type="text"
-        isDisabled={isDisabled}
-        onChange={onChange}
-      />
+      <FormItem labelTitle={label}>
+        <FormInput
+          value={userNameValue}
+          title={label}
+          placeholder="your-username"
+          type="text"
+          isDisabled={isDisabled}
+          onChange={onChange}
+        />
+      </FormItem>
     </FormInputValidator>
   );
 }

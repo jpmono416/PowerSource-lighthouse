@@ -7,6 +7,7 @@ export default function FormInputValidator({
   className,
   children,
   doSkipValidation,
+  doUseDarkText = false,
 }) {
   const [doShowErrors, setDoShowErrors] = useState(false);
 
@@ -21,12 +22,18 @@ export default function FormInputValidator({
 
   const [isValid, error] = validator(...values);
   const errorMessage = !isValid && (
-    <p className="text-primary-500 pl-2" role="alert">
+    <p
+      className={classNames("pl-2", {
+        "text-primary-500": !doUseDarkText,
+        "text-primary-800": doUseDarkText,
+      })}
+      role="alert"
+    >
       {error}
     </p>
   );
 
-  const classes = classNames("w-full max-w-[20rem] mb-2", className);
+  const classes = classNames("w-full mb-2", className);
 
   return (
     <div className={classes} onBlur={handleBlur}>

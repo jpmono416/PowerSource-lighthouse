@@ -250,7 +250,3 @@ describe("Filter modal tests: ", () => {
     });
   });
 });
-
-//Disables all inputs when doShow is false
-
-//Should return undefined where no filter options

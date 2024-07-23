@@ -6,6 +6,7 @@ import CatalogueFilter from "./filter/CatalogueFilter";
 import getCatalogueTableConfig from "../../utils/tableConfigs/catalogueTableConfig";
 import Table from "../library/table/Table";
 import RenderedErrors from "../library/RenderedErrors";
+import AddLLMModalButton from "./AddLLMModalButton";
 
 export default function Catalogue() {
   const { screenSize } = useAppContext();
@@ -19,7 +20,10 @@ export default function Catalogue() {
 
   return (
     <div className="mt-8">
-      <CatalogueFilter isDisabled={isLoading} />
+      <div className="grid grid-cols-[1fr_auto] items-center  mb-6">
+        <CatalogueFilter isDisabled={isLoading} />
+        <AddLLMModalButton isDisabled={isLoading} />
+      </div>
       <Table
         config={catalogueTableConfig}
         data={results}

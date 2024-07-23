@@ -97,7 +97,6 @@ describe("Row cells tests: ", () => {
   });
 
   describe("Data has loaded with one or more rows test: ", () => {
-    const testNoElementsMessage = "Test no elements message";
     beforeEach(() => {
       renderWithRouter(
         <table>

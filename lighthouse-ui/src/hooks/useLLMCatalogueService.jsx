@@ -84,6 +84,19 @@ export default function useLLMCatalogueService() {
     }
   };
 
+  const getMatrix = async () => {
+    try {
+      setErrors(null);
+      setIsLoading(true);
+      const response = await llmService.getMatrix();
+      return response;
+    } catch (err) {
+      handleErrors(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const updateQueryValueFor = (field, value) => {
     const formattedValue = value.toString().trim();
     queryStringBuilder.setFilter(field, formattedValue);
@@ -105,6 +118,7 @@ export default function useLLMCatalogueService() {
     errors,
     getLLMs,
     getLLMById,
+    getMatrix,
     isLoading,
     filterOptions,
     queryString,

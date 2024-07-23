@@ -37,3 +37,11 @@ export const createLLM = async (payload) => {
     return response.data;
   });
 };
+
+export const getMatrix = async () => {
+  let url = `${llmEndpointRoot}/matrix`;
+  return await withErrorHandling(async () => {
+    const response = await axios.get(url);
+    return response.data;
+  });
+};

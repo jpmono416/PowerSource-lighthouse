@@ -5,7 +5,7 @@ import FilterDropdown from "../../../../src/components/catalogue/filter/FilterDr
 import filterOptionsTestData from "../../../data/filterOptions.test.data";
 
 describe("Filter dropdown tests: ", () => {
-  const testOptions = filterOptionsTestData.organizations;
+  const testOptions = filterOptionsTestData.organization;
   let onChangeSpy;
 
   beforeEach(() => {

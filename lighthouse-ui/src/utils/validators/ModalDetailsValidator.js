@@ -6,9 +6,9 @@ export default class ModalDetailsValidator {
     description: ModalDetailsValidator.validateDescription,
     modality: ModalDetailsValidator.validateModality,
     organization: ModalDetailsValidator.validateOrganisation,
-    createdAt: ModalDetailsValidator.validateCreatedAt,
+    created_date: ModalDetailsValidator.validateCreatedAt,
     access: ModalDetailsValidator.validateAccess,
-    licence: ModalDetailsValidator.validateLicence,
+    license: ModalDetailsValidator.validateLicence,
     perceived_business_value:
       ModalDetailsValidator.validatePerceivedBusinessValue,
     business_readiness: ModalDetailsValidator.validateBusinessReadiness,
@@ -44,8 +44,6 @@ export default class ModalDetailsValidator {
   }
 
   static validateModality(modality) {
-    if (modality.length < 3)
-      return [false, "Modality must be at least 3 characters"];
     if (modality.length > 64)
       return [false, "Modality must be no more than 64 characters"];
     return [true];

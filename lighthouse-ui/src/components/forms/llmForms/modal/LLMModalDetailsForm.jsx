@@ -10,18 +10,19 @@ import NameInput from "./inputFields/NameInput";
 import OrganisationInput from "./inputFields/OrganisationInput";
 import PerceivedBusinessValueInput from "./inputFields/PerceivedBusinessValueInput";
 import ModalDetailsValidator from "../../../../utils/validators/ModalDetailsValidator";
+import RenderedErrors from "../../../library/RenderedErrors";
 
 export default function LLMModalDetailsForm({
   onSubmit,
   submitButtonText,
   isLoading,
   defaultValues,
+  errors,
 }) {
   const formState = useModalFormState(defaultValues);
   const submitIsDisabled = !ModalDetailsValidator.isValidated(
     formState.submission
   );
-  console.log(ModalDetailsValidator.isValidated(formState.submission));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,9 +49,9 @@ export default function LLMModalDetailsForm({
         isActive
       />
       <CreatedAtInput
-        createdAtValue={formState.createdAt}
+        createdAtValue={formState.created_date}
         isDisabled={isLoading}
-        onChange={(e) => formState.setCreatedAt(e.target.value)}
+        onChange={(e) => formState.setCreated_date(e.target.value)}
         isActive
       />
       <DescriptionInput
@@ -72,9 +73,9 @@ export default function LLMModalDetailsForm({
         isActive
       />
       <LicenceInput
-        licenceValue={formState.licence}
+        licenceValue={formState.license}
         isDisabled={isLoading}
-        onChange={(e) => formState.setLicence(e.target.value)}
+        onChange={(e) => formState.setLicense(e.target.value)}
         isActive
       />
       <PerceivedBusinessValueInput
@@ -99,12 +100,13 @@ export default function LLMModalDetailsForm({
       >
         {submitButtonText}
       </Button>
-      {submitIsDisabled && (
+      {submitIsDisabled && !errors && (
         <p className="text-secondary-700">
           One or more fields are invalid. Please check that all required fields
           (*) have been completed and that there are no warnings
         </p>
       )}
+      <RenderedErrors errors={errors} />
     </form>
   );
 }

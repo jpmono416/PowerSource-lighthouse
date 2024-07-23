@@ -5,7 +5,6 @@ import { cleanUpForModal, setUpForModal } from "../../../test.utils";
 import FilterModal from "../../../../src/components/catalogue/filter/FilterModal";
 import filterOptionsTestData from "../../../data/filterOptions.test.data";
 import FilterValidator from "../../../../src/utils/validators/FilterValidator";
-import validator from "validator";
 
 vi.mock("../../../../src/utils/validators/FilterValidator");
 
@@ -13,10 +12,10 @@ describe("Filter modal tests: ", () => {
   const testDefaultValues = {
     createdDateFrom: "2022-01-01",
     createdDateTo: "2023-01-01",
-    organization: filterOptionsTestData.organizations[1],
-    licence: filterOptionsTestData.licences[1],
+    organization: filterOptionsTestData.organization[1],
+    license: filterOptionsTestData.license[1],
     access: filterOptionsTestData.access[1],
-    modality: filterOptionsTestData.modalities[1],
+    modality: filterOptionsTestData.modality[1],
   };
   let updateQueryValueForMock;
   let handleApplyFiltersMock;
@@ -57,7 +56,7 @@ describe("Filter modal tests: ", () => {
 
     test("It should display all organisation options with correct default value", () => {
       //Arrange
-      const testOptions = filterOptionsTestData.organizations;
+      const testOptions = filterOptionsTestData.organization;
       const organisationSelectTag = screen
         .getByText(testOptions[0])
         .closest("select");
@@ -70,12 +69,12 @@ describe("Filter modal tests: ", () => {
 
     test("It should display all licence options with correct default value", () => {
       //Arrange
-      const testOptions = filterOptionsTestData.licences;
+      const testOptions = filterOptionsTestData.license;
       const licenceSelectTag = screen
         .getByText(testOptions[0])
         .closest("select");
       //Assert
-      expect(licenceSelectTag.value).toBe(testDefaultValues.licence);
+      expect(licenceSelectTag.value).toBe(testDefaultValues.license);
       testOptions.forEach((testOption) => {
         expect(screen.getByText(testOption));
       });
@@ -96,7 +95,7 @@ describe("Filter modal tests: ", () => {
 
     test("It should display all modality options with correct default value", () => {
       //Arrange
-      const testOptions = filterOptionsTestData.modalities;
+      const testOptions = filterOptionsTestData.modality;
       const modalitySelectTag = screen
         .getByText(testOptions[0])
         .closest("select");
@@ -118,7 +117,7 @@ describe("Filter modal tests: ", () => {
 
     test("It should call updateQueryValueFor with correct arguments when organisation value changes", async () => {
       //Arrange
-      const testOptions = filterOptionsTestData.organizations;
+      const testOptions = filterOptionsTestData.organization;
       const testOption = testOptions[0];
       const organisationSelectTag = screen
         .getByText(testOptions[0])
@@ -138,7 +137,7 @@ describe("Filter modal tests: ", () => {
 
     test("It should call updateQueryValueFor with correct arguments when licence value changes", async () => {
       //Arrange
-      const testOptions = filterOptionsTestData.licences;
+      const testOptions = filterOptionsTestData.license;
       const testOption = testOptions[0];
       const licenceSelectTag = screen
         .getByText(testOptions[0])
@@ -150,7 +149,7 @@ describe("Filter modal tests: ", () => {
         })
       );
       //Assert
-      expect(updateQueryValueForMock).toBeCalledWith("licence", testOption);
+      expect(updateQueryValueForMock).toBeCalledWith("license", testOption);
     });
 
     test("It should call updateQueryValueFor with correct arguments when access value changes", async () => {
@@ -172,7 +171,7 @@ describe("Filter modal tests: ", () => {
 
     test("It should call updateQueryValueFor with correct arguments when modality value changes", async () => {
       //Arrange
-      const testOptions = filterOptionsTestData.modalities;
+      const testOptions = filterOptionsTestData.modality;
       const testOption = testOptions[0];
       const modalitySelectTag = screen
         .getByText(testOptions[0])

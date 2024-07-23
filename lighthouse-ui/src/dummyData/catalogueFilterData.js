@@ -1,5 +1,5 @@
 const catalogueFilterData = {
-  organizations: [
+  organization: [
     "01 AI",
     "Adept",
     "Adobe",
@@ -141,7 +141,7 @@ const catalogueFilterData = {
     "Zhejiang University",
     "Zhipu AI, Tsinghua University",
   ],
-  licences: [
+  licence: [
     "AI2 ImpACT",
     "Apache 2.0",
     "Apple",
@@ -177,7 +177,7 @@ const catalogueFilterData = {
     "StabilityAI Non-Commercial Research Community License",
   ],
   access: ["closed", "limited", "open"],
-  modalities: [
+  modality: [
     "amino acid sequence",
     "protein structure",
     "audio",

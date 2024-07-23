@@ -9,9 +9,11 @@ export default function useModalFormState(defaultValues) {
   const [organization, setOrganization] = useState(
     defaultValues?.organization || ""
   );
-  const [createdAt, setCreatedAt] = useState(defaultValues?.createdAt || "");
+  const [created_date, setCreated_date] = useState(
+    defaultValues?.created_date || ""
+  );
   const [access, setAccess] = useState(defaultValues?.access || "");
-  const [licence, setLicence] = useState(defaultValues?.licence || "");
+  const [license, setLicense] = useState(defaultValues?.license || "");
   const [perceived_business_value, setPerceived_business_value] = useState(
     defaultValues?.perceived_business_value || ""
   );
@@ -24,9 +26,9 @@ export default function useModalFormState(defaultValues) {
     description,
     modality,
     organization,
-    createdAt,
+    created_date,
     access,
-    licence,
+    license,
     perceived_business_value,
     business_readiness,
   };
@@ -40,12 +42,12 @@ export default function useModalFormState(defaultValues) {
     setModality,
     organization,
     setOrganization,
-    createdAt,
-    setCreatedAt,
+    created_date,
+    setCreated_date,
     access,
     setAccess,
-    licence,
-    setLicence,
+    license,
+    setLicense,
     perceived_business_value,
     setPerceived_business_value,
     business_readiness,

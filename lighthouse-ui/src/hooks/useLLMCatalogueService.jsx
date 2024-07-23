@@ -40,6 +40,19 @@ export default function useLLMCatalogueService() {
     }
   };
 
+  const getLLMById = async (id) => {
+    try {
+      setErrors(null);
+      setIsLoading(true);
+      const response = await llmService.getLLMById(id);
+      return response;
+    } catch (err) {
+      handleErrors(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const getFilterOptions = async () => {
     try {
       setErrors(null);
@@ -55,6 +68,21 @@ export default function useLLMCatalogueService() {
   };
 
   const refreshResults = () => getLLMs();
+
+  const createLLM = async (submission) => {
+    try {
+      setErrors(null);
+      setIsLoading(true);
+      const response = await llmService.createLLM(submission);
+      await getFilterOptions();
+      await getLLMs();
+      return response;
+    } catch (err) {
+      handleErrors(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const updateQueryValueFor = (field, value) => {
     const formattedValue = value.toString().trim();
@@ -73,8 +101,10 @@ export default function useLLMCatalogueService() {
   }, []);
 
   return {
+    createLLM,
     errors,
     getLLMs,
+    getLLMById,
     isLoading,
     filterOptions,
     queryString,

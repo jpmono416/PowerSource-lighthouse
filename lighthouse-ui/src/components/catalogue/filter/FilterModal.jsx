@@ -15,8 +15,7 @@ export default function FilterModal({
   filterOptions,
 }) {
   if (!filterOptions) return;
-  const { organizations, licences, access, modalities } = filterOptions;
-
+  const { organization, license, access, modality } = filterOptions;
   const validator = useMemo(
     () =>
       new FilterValidator({
@@ -45,7 +44,7 @@ export default function FilterModal({
         <div className="mb-4">
           <h3 className={headingClasses}>Organisation</h3>
           <FilterDropdown
-            options={organizations}
+            options={organization}
             isDisabled={!doShow}
             onChange={(value) => updateQueryValueFor("organization", value)}
             defaultValue={defaultValues.organization}
@@ -54,10 +53,10 @@ export default function FilterModal({
         <div className="mb-4">
           <h3 className={headingClasses}>Licence</h3>
           <FilterDropdown
-            options={licences}
+            options={license}
             isDisabled={!doShow}
-            onChange={(value) => updateQueryValueFor("licence", value)}
-            defaultValue={defaultValues.licence}
+            onChange={(value) => updateQueryValueFor("license", value)}
+            defaultValue={defaultValues.license}
           />
         </div>
         <div className="mb-4">
@@ -72,7 +71,7 @@ export default function FilterModal({
         <div className="mb-6">
           <h3 className={headingClasses}>Modality</h3>
           <FilterDropdown
-            options={modalities}
+            options={modality}
             isDisabled={!doShow}
             onChange={(value) => updateQueryValueFor("modality", value)}
             defaultValue={defaultValues.modality}

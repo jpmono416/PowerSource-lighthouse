@@ -6,8 +6,6 @@ import FilterValidator from "../../../utils/validators/FilterValidator";
 import ReleaseDateFilter from "./ReleaseDateFilter";
 import SlidingDrawer from "../../library/SlidingDrawer";
 
-import catalogueFilterData from "../../../dummyData/catalogueFilterData";
-
 export default function FilterModal({
   doShow,
   onClose,

@@ -1,7 +1,8 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect } from "vitest";
-import filterOptionsTestData from "../../../data/filterOptions.test.data";
+
 import FilterDropdown from "../../../../src/components/catalogue/filter/FilterDropdown";
+import filterOptionsTestData from "../../../data/filterOptions.test.data";
 
 describe("Filter dropdown tests: ", () => {
   const testOptions = filterOptionsTestData.organizations;
@@ -101,8 +102,4 @@ describe("Filter dropdown tests: ", () => {
       expect(screen.getByRole("menu")).toBeDisabled();
     });
   });
-
-  //It should truncate labels where they are over 32 chars
-
-  //DIsabled tests
 });

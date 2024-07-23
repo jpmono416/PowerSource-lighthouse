@@ -1,4 +1,4 @@
-import { Op } from "sequelize";
+import { Op, fn, col } from "sequelize";
 import { defineLLMModel } from "../models/LLM.model.js";
 
 export default class LLMService {
@@ -94,5 +94,47 @@ export default class LLMService {
             console.error("Error retrieving LLM by id:", error);
             throw error;
         }
+    }
+
+    static async getDistinctFilterValues() {
+        try {
+            const LLMModel = await this.getLLMModel();
+            const filterColumns = ["organization", "license", "access", "modality"];
+            let distinctValues = {};
+
+            for (const column of filterColumns) {
+                //? Modalities are stored as a string with multiple values separated by ';' so they're treated differently
+                //? This function could be simplified if we had better data integrity and quality
+                const distinctColumnValues = await LLMModel.findAll({
+                    attributes: [[fn("DISTINCT", col(column)), column]],
+                    where: {},
+                    order: [[column, "ASC"]],
+                });
+
+                const filteredValues = distinctColumnValues
+                    .filter((value) => value[column]) // Remove null values
+                    .map((value) => value[column]); // Extract the column value
+
+                distinctValues[column] =
+                    column === "modality" ? this.processModalities(filteredValues) : filteredValues;
+            }
+
+            return distinctValues;
+        } catch (error) {
+            console.error("Error getting distinct filter values:", error);
+            throw error;
+        }
+    }
+
+    // Custom function to process modality values
+    static processModalities(modalities) {
+        const distinctModalities = new Set();
+        modalities.forEach((modality) => {
+            modality.split(";").forEach((subModality) => {
+                distinctModalities.add(subModality.trim());
+            });
+        });
+        
+        return Array.from(distinctModalities);
     }
 }

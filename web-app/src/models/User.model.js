@@ -30,7 +30,7 @@ export const defineUserModel = () => {
       },
     },
     {
-      tableName: "users",
+      tableName: "powersource_users",
       timestamps: false,
     }
   );

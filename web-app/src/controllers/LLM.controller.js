@@ -44,6 +44,15 @@ export default class LLMController {
         }
     };
 
+    static getMatrixLLMs = async (req, res) => {
+        try {
+            const matrixLLMs = await LLMService.getMatrixLLMs();
+            res.status(200).json(matrixLLMs);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    };
+
     static getDistinctFilterValues = async (req, res) => {
         try {
             const filterValues = await LLMService.getDistinctFilterValues();
@@ -51,5 +60,5 @@ export default class LLMController {
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
-    }
+    };
 }

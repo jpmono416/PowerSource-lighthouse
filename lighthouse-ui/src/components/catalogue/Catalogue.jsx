@@ -9,13 +9,14 @@ import RenderedErrors from "../library/RenderedErrors";
 import AddLLMModalButton from "./AddLLMModalButton";
 
 export default function Catalogue() {
-  const { screenSize, isAdmin } = useAppContext();
+  const { activeUser, screenSize, isAdmin } = useAppContext();
   const { results, isLoading, errors } = useLLMCatalogueContext();
 
   const catalogueTableConfig = useMemo(() => {
     return getCatalogueTableConfig(screenSize);
   }, [screenSize]);
 
+  if (!activeUser) return;
   if (errors) return <RenderedErrors errors={errors} />;
 
   return (

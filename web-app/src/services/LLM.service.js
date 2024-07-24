@@ -66,7 +66,7 @@ export default class LLMService {
             };
             if (filters) {
                 if (filters.name) {
-                    query.where.name = { [Op.like]: `%${filters.name}%` };
+                    query.where.name = { [Op.iLike]: `%${filters.name}%` };
                 }
 
                 if (filters.organization) {

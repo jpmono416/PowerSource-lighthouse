@@ -29,13 +29,12 @@ export default class LLMService {
       organization,
       created_date,
       access,
-      licence,
+      license,
       perceived_business_value,
       business_readiness,
     } = llmDetails;
     try {
       const LLMModel = await this.getLLMModel();
-      console.log("About to create LLM");
       const llm = await LLMModel.create({
         type,
         name,
@@ -45,7 +44,7 @@ export default class LLMService {
         organization,
         created_date,
         access,
-        licence,
+        license,
         perceived_business_value,
         business_readiness,
       });
@@ -139,6 +138,17 @@ export default class LLMService {
     }
   }
 
+  static async updateLLM(id, llmDetails) {
+    try {
+      const LLMModel = await this.getLLMModel();
+      const llm = await LLMModel.update(llmDetails, { where: { id } });
+      return llm;
+    } catch (error) {
+      console.error("Error updating LLM:", error);
+      throw error;
+    }
+  }
+
   static async getDistinctFilterValues() {
     try {
       const LLMModel = await this.getLLMModel();
@@ -161,7 +171,7 @@ export default class LLMService {
         const splitByChar = column === "modality" ? ";" : ",";
         distinctValues[column] = this.processMultiValueStrings(
           filteredValues,
-          splitByChar
+          splitByChar,
         );
       }
 

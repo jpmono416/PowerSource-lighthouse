@@ -8,7 +8,6 @@ export default class Server {
   #app;
   #host;
   #port;
-  #clientUrl;
   #server;
   #userRouter;
   #llmRouter;
@@ -17,7 +16,6 @@ export default class Server {
     this.#app = express();
     this.#port = port;
     this.#host = host;
-    // this.#clientUrl = clientUrl; // TODO - use this for CORS when client is ready
     this.#server = null;
     this.#userRouter = new UserRoutes();
     this.#llmRouter = new LLMRoutes();
@@ -47,12 +45,12 @@ export default class Server {
     // Routers
     this.#app.use(
       this.#userRouter.getRouteStartPoint(),
-      this.#userRouter.getRouter()
+      this.#userRouter.getRouter(),
     );
 
     this.#app.use(
       this.#llmRouter.getRouteStartPoint(),
-      this.#llmRouter.getRouter()
+      this.#llmRouter.getRouter(),
     );
   };
 

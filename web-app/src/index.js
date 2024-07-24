@@ -3,8 +3,7 @@ import Database from "./db/Database.js";
 import Server from "./server/Server.js";
 
 Config.load();
-const { SERVER_PORT, SERVER_HOST, CLIENT_URL } =
-    process.env;
+const { SERVER_PORT, SERVER_HOST, CLIENT_URL } = process.env;
 
 const database = Database.getInstance();
 await database.connect();

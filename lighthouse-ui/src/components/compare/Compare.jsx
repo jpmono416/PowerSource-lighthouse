@@ -20,7 +20,7 @@ export default function Compare() {
 
   let content;
   if (errors) content = <RenderedErrors errors={errors} />;
-  else if (!matrix || isLoading) content = <LoadingSpinner />;
+  else if (!matrix) content = <LoadingSpinner />;
   else {
     const dataPoints = matrix.map((model) => {
       return {

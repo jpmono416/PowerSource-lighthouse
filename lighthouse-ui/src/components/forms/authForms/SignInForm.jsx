@@ -14,7 +14,7 @@ export default function SignInForm({ onClose, onSuccess }) {
     const user = await signInUser(submission);
     if (!user) return;
     onSuccess();
-    onClose(true);
+    onClose({ isSuccess: true });
   };
 
   return (

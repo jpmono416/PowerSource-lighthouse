@@ -34,7 +34,7 @@ export default function DataPoint({ label, x, y, gradient, link }) {
 
   return (
     <div
-      className="absolute w-[3.5%] aspect-square bg-green-500 rounded-full translate-x-[-50%] translate-y-[50%] cursor-pointer group z-0 hover:z-10"
+      className="absolute w-[3.5%] aspect-square bg-green-500 rounded-full translate-x-[-50%] translate-y-[50%] cursor-pointer group z-0 hover:z-10 hover:border-[1px] border-secondary-900"
       style={{
         ...dataPointPosition,
         transition: "bottom 1s ease, left 1s ease",

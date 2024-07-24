@@ -33,8 +33,8 @@ export default function Compare() {
     });
     content = (
       <GartnerQuadrant
-        xAxisLabel="Business Readiness"
-        yAxisLabel="Perceived Business Value"
+        yAxisLabel="Business Readiness"
+        xAxisLabel="Perceived Business Value"
         dataPoints={dataPoints}
       />
     );

@@ -1,7 +1,7 @@
 export default function QuadrantLabels() {
   const labelConfigs = [
     {
-      title: "Contenders",
+      title: "Innovators",
       yAlign: "top",
       xAlign: "left",
     },
@@ -16,7 +16,7 @@ export default function QuadrantLabels() {
       xAlign: "left",
     },
     {
-      title: "Innovators",
+      title: "Contenders",
       yAlign: "bottom",
       xAlign: "right",
     },

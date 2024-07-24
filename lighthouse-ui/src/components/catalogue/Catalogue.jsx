@@ -10,14 +10,18 @@ import AddLLMModalButton from "./AddLLMModalButton";
 
 export default function Catalogue() {
   const { activeUser, screenSize, isAdmin } = useAppContext();
-  const { results, isLoading, errors } = useLLMCatalogueContext();
+  const { results, isLoading, errors, lastActionName } =
+    useLLMCatalogueContext();
 
   const catalogueTableConfig = useMemo(() => {
     return getCatalogueTableConfig(screenSize);
   }, [screenSize]);
 
   if (!activeUser) return;
-  if (errors) return <RenderedErrors errors={errors} />;
+  const isErrors =
+    errors &&
+    (lastActionName === "getLLMs" || lastActionName === "getFilterOptions");
+  if (isErrors) return <RenderedErrors errors={errors} />;
 
   return (
     <div className="mt-8">

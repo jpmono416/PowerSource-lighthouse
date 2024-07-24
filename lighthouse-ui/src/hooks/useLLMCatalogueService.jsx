@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useLocation } from "react-router";
 
 import { useAppContext } from "./contexts/AppContext";
 import QueryStringBuilder from "../utils/QueryStringBuilder";
@@ -9,10 +10,12 @@ export default function useLLMCatalogueService() {
   const [filterOptions, setFilterOptions] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState(null);
+  const [lastAction, setLastAction] = useState("");
   const [queryString, setQueryString] = useState("");
   const [queryValues, setQueryValues] = useState({});
 
   const { activeUser } = useAppContext();
+  const { pathname } = useLocation();
 
   const queryStringBuilder = useMemo(() => new QueryStringBuilder(), []);
 
@@ -32,6 +35,7 @@ export default function useLLMCatalogueService() {
 
   const getLLMs = async () => {
     try {
+      setLastAction("getLLMs");
       setErrors(null);
       setIsLoading(true);
       const response = await llmService.getLLMs(queryString);
@@ -46,6 +50,7 @@ export default function useLLMCatalogueService() {
 
   const getLLMById = async (id) => {
     try {
+      setLastAction("getLLMById");
       setErrors(null);
       setIsLoading(true);
       const response = await llmService.getLLMById(id);
@@ -59,6 +64,7 @@ export default function useLLMCatalogueService() {
 
   const getFilterOptions = async () => {
     try {
+      setLastAction("getFilterOptions");
       setErrors(null);
       setIsLoading(true);
       const response = await llmService.getLLMCatalogueFilterOptions();
@@ -75,6 +81,7 @@ export default function useLLMCatalogueService() {
 
   const createLLM = async (submission) => {
     try {
+      setLastAction("createLLM");
       setErrors(null);
       setIsLoading(true);
       const response = await llmService.createLLM(submission);
@@ -88,8 +95,25 @@ export default function useLLMCatalogueService() {
     }
   };
 
+  const editLLM = async (id, updates) => {
+    try {
+      setLastAction("editLLM");
+      setErrors(null);
+      setIsLoading(true);
+      const response = await llmService.editLLM(id, updates);
+      await getFilterOptions();
+      await getLLMs();
+      return response;
+    } catch (err) {
+      handleErrors(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const getMatrix = async () => {
     try {
+      setLastAction("getMatrix");
       setErrors(null);
       setIsLoading(true);
       const response = await llmService.getMatrix();
@@ -109,10 +133,13 @@ export default function useLLMCatalogueService() {
   };
 
   const initialiseData = async () => {
-    console.log("MOUNTING");
     await getFilterOptions();
     await getLLMs();
   };
+
+  useEffect(() => {
+    setErrors(null);
+  }, [pathname]);
 
   useEffect(() => {
     initialiseData();
@@ -120,12 +147,14 @@ export default function useLLMCatalogueService() {
 
   return {
     createLLM,
+    editLLM,
     errors,
     getLLMs,
     getLLMById,
     getMatrix,
     isLoading,
     filterOptions,
+    lastAction,
     queryString,
     queryValues,
     refreshResults,

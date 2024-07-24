@@ -141,8 +141,11 @@ export default class LLMService {
   static async updateLLM(id, llmDetails) {
     try {
       const LLMModel = await this.getLLMModel();
-      const llm = await LLMModel.update(llmDetails, { where: { id } });
-      return llm;
+      const [updateCount, updatedRows] = await LLMModel.update(llmDetails, {
+        where: { id },
+        returning: true,
+      });
+      return updateCount > 0 ? updatedRows[0] : null;
     } catch (error) {
       console.error("Error updating LLM:", error);
       throw error;
@@ -171,7 +174,7 @@ export default class LLMService {
         const splitByChar = column === "modality" ? ";" : ",";
         distinctValues[column] = this.processMultiValueStrings(
           filteredValues,
-          splitByChar,
+          splitByChar
         );
       }
 

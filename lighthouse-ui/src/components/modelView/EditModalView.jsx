@@ -7,7 +7,7 @@ import LoadingSpinner from "../library/LoadingSpinner";
 import RenderedErrors from "../library/RenderedErrors";
 
 export default function EditModalView() {
-  const { createLLM, getLLMById, isLoading, errors } = useLLMCatalogueContext();
+  const { editLLM, getLLMById, isLoading, errors } = useLLMCatalogueContext();
   const [fetchModelErrors, setFetchModelErrors] = useState();
 
   const modelId = useParams().modelId;
@@ -26,8 +26,9 @@ export default function EditModalView() {
   const navigate = useNavigate();
 
   const handleSubmit = async (submission) => {
-    const newLLM = await createLLM(submission);
-    if (newLLM?.id) navigate(`/models/catalogue/${newLLM.id}`);
+    const updatedLLM = await editLLM(model.id, submission);
+    console.log(updatedLLM);
+    if (updatedLLM?.id) navigate(`/models/catalogue/${updatedLLM.id}`);
   };
 
   return (
@@ -42,7 +43,7 @@ export default function EditModalView() {
 
           <LLMModalDetailsForm
             onSubmit={handleSubmit}
-            submitButtonText="Create"
+            submitButtonText="Save"
             isLoading={isLoading}
             errors={errors}
             defaultValues={model}

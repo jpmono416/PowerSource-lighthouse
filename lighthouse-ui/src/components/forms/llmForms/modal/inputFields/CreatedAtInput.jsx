@@ -10,6 +10,7 @@ export default function CreatedAtInput({
   onChange,
   isActive,
   doSkipValidation,
+  forceShowValidationErrors,
 }) {
   if (!isActive) return;
 
@@ -20,6 +21,7 @@ export default function CreatedAtInput({
       validator={ModalDetailsValidator.validateCreatedAt}
       doSkipValidation={doSkipValidation}
       doUseDarkText
+      forceShowValidationErrors={forceShowValidationErrors}
     >
       <FormItem
         labelTitle={label}

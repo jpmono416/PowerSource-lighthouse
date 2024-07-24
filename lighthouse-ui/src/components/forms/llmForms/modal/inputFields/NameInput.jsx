@@ -10,6 +10,7 @@ export default function NameInput({
   onChange,
   isActive,
   doSkipValidation,
+  forceShowValidationErrors,
 }) {
   if (!isActive) return;
 
@@ -20,6 +21,7 @@ export default function NameInput({
       validator={ModalDetailsValidator.validateName}
       doSkipValidation={doSkipValidation}
       doUseDarkText
+      forceShowValidationErrors={forceShowValidationErrors}
     >
       <FormItem
         labelTitle={label}

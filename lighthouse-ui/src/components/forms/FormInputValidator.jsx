@@ -8,8 +8,9 @@ export default function FormInputValidator({
   children,
   doSkipValidation,
   doUseDarkText = false,
+  forceShowValidationErrors,
 }) {
-  const [doShowErrors, setDoShowErrors] = useState(false);
+  const [doShowErrors, setDoShowErrors] = useState(forceShowValidationErrors);
 
   const handleBlur = () => {
     if (doSkipValidation) return setDoShowErrors(false);

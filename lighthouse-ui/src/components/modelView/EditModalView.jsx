@@ -27,7 +27,6 @@ export default function EditModalView() {
 
   const handleSubmit = async (submission) => {
     const updatedLLM = await editLLM(model.id, submission);
-    console.log(updatedLLM);
     if (updatedLLM?.id) navigate(`/models/catalogue/${updatedLLM.id}`);
   };
 
@@ -47,6 +46,7 @@ export default function EditModalView() {
             isLoading={isLoading}
             errors={errors}
             defaultValues={model}
+            forceShowValidationErrors
           />
         </>
       )}

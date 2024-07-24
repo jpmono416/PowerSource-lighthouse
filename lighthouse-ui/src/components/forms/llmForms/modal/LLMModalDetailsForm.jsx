@@ -18,6 +18,7 @@ export default function LLMModalDetailsForm({
   isLoading,
   defaultValues,
   errors,
+  forceShowValidationErrors,
 }) {
   const formState = useModalFormState(defaultValues);
   const submitIsDisabled = !ModalDetailsValidator.isValidated(
@@ -41,54 +42,63 @@ export default function LLMModalDetailsForm({
         isDisabled={isLoading}
         onChange={(e) => formState.setName(e.target.value)}
         isActive
+        forceShowValidationErrors={forceShowValidationErrors}
       />
       <OrganisationInput
         organisationValue={formState.organization}
         isDisabled={isLoading}
         onChange={(e) => formState.setOrganization(e.target.value)}
         isActive
+        forceShowValidationErrors={forceShowValidationErrors}
       />
       <CreatedAtInput
         createdAtValue={formState.created_date}
         isDisabled={isLoading}
         onChange={(e) => formState.setCreated_date(e.target.value)}
         isActive
+        forceShowValidationErrors={forceShowValidationErrors}
       />
       <DescriptionInput
         descriptionValue={formState.description}
         isDisabled={isLoading}
         onChange={(e) => formState.setDescription(e.target.value)}
         isActive
+        forceShowValidationErrors={forceShowValidationErrors}
       />
       <ModalityInput
         modalityValue={formState.modality}
         isDisabled={isLoading}
         onChange={(e) => formState.setModality(e.target.value)}
         isActive
+        forceShowValidationErrors={forceShowValidationErrors}
       />
       <AccessInput
         accessValue={formState.access}
         isDisabled={isLoading}
         onChange={(e) => formState.setAccess(e.target.value)}
         isActive
+        forceShowValidationErrors={forceShowValidationErrors}
       />
       <LicenceInput
         licenceValue={formState.license}
         isDisabled={isLoading}
         onChange={(e) => formState.setLicense(e.target.value)}
         isActive
+        forceShowValidationErrors={forceShowValidationErrors}
       />
       <PerceivedBusinessValueInput
         perceivedBusinessValue={formState.perceived_business_value}
         isDisabled={isLoading}
         onChange={(e) => formState.setPerceived_business_value(e.target.value)}
         isActive
+        forceShowValidationErrors={forceShowValidationErrors}
       />
       <BusinessReadinessInput
         businessReadinessValue={formState.business_readiness}
         isDisabled={isLoading}
         onChange={(e) => formState.setBusiness_readiness(e.target.value)}
         isActive
+        forceShowValidationErrors={forceShowValidationErrors}
       />
       <Button
         primary

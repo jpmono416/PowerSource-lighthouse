@@ -10,6 +10,7 @@ export default function OrganisationInput({
   onChange,
   isActive,
   doSkipValidation,
+  forceShowValidationErrors,
 }) {
   if (!isActive) return;
 
@@ -20,6 +21,7 @@ export default function OrganisationInput({
       validator={ModalDetailsValidator.validateOrganisation}
       doSkipValidation={doSkipValidation}
       doUseDarkText
+      forceShowValidationErrors={forceShowValidationErrors}
     >
       <FormItem
         labelTitle={label}

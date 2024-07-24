@@ -48,7 +48,7 @@ export default class UserController {
 
       const { user, token } = await UserService.loginUser(
         req.body.email,
-        req.body.password
+        req.body.password,
       );
       if (!user) return res.status(404).json({ error: "User not found" });
 
@@ -79,7 +79,7 @@ export default class UserController {
       const user = await UserService.changePassword(
         req.body.email,
         req.body.password,
-        req.body.newPassword
+        req.body.newPassword,
       );
       if (!user) return res.status(404).json({ error: "User not found" });
 

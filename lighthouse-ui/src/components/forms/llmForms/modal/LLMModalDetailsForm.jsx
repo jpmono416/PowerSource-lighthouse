@@ -28,7 +28,11 @@ export default function LLMModalDetailsForm({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (submitIsDisabled) return;
-    onSubmit(formState.submission);
+    const formattedSubmission = { ...formState.submission };
+    for (const key in formattedSubmission) {
+      if (formattedSubmission[key] === "") delete formattedSubmission[key];
+    }
+    onSubmit(formattedSubmission);
   };
 
   return (

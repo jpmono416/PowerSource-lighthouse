@@ -12,13 +12,11 @@ class Database {
 
     constructor() {
         if (Database.instance) {
-            console.log("Returning instance");
             return Database.instance;
         }
 
         Config.load();
         const { DB_NAME, DB_USER, DB_PASS, DB_HOST, DB_PORT } = process.env;
-        console.log("Vars: ", DB_NAME, DB_USER, DB_PASS, DB_HOST, DB_PORT);
 
         this.dbName = DB_NAME;
         this.dbUser = DB_USER;
@@ -33,7 +31,6 @@ class Database {
         });
 
         Database.instance = this;
-        // console.log("DB Instance created: ", Database.instance);
     }
 
     async connect() {

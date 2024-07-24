@@ -29,13 +29,12 @@ export default class LLMService {
       organization,
       created_date,
       access,
-      licence,
+      license,
       perceived_business_value,
       business_readiness,
     } = llmDetails;
     try {
       const LLMModel = await this.getLLMModel();
-      console.log("About to create LLM");
       const llm = await LLMModel.create({
         type,
         name,
@@ -45,7 +44,7 @@ export default class LLMService {
         organization,
         created_date,
         access,
-        licence,
+        license,
         perceived_business_value,
         business_readiness,
       });

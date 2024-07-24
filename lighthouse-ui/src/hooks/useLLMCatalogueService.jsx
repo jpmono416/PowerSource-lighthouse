@@ -27,6 +27,7 @@ export default function useLLMCatalogueService() {
     if (Array.isArray(err)) errorMessages = err.map((err) => err.msg);
     else errorMessages = [err.message || err];
     setErrors(errorMessages);
+    return errorMessages;
   };
 
   const getLLMs = async () => {
@@ -50,7 +51,7 @@ export default function useLLMCatalogueService() {
       const response = await llmService.getLLMById(id);
       return response;
     } catch (err) {
-      handleErrors(err);
+      return { errors: handleErrors(err) };
     } finally {
       setIsLoading(false);
     }
@@ -108,6 +109,7 @@ export default function useLLMCatalogueService() {
   };
 
   const initialiseData = async () => {
+    console.log("MOUNTING");
     await getFilterOptions();
     await getLLMs();
   };

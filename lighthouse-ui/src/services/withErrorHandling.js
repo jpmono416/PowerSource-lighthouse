@@ -14,7 +14,6 @@ const withErrorHandling = async (apiCall) => {
   try {
     return await apiCall();
   } catch (err) {
-    console.log(err);
     if (err?.response?.status === 401) handle401Error();
     throw err?.response?.data?.error ?? err?.response?.data ?? err;
   }

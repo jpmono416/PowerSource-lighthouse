@@ -1,20 +1,26 @@
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { CiEdit } from "react-icons/ci";
 
 import { useLLMCatalogueContext } from "../../../hooks/contexts/LLMCatalogueContext";
 import LoadingSpinner from "../../library/LoadingSpinner";
 import RenderedErrors from "../../library/RenderedErrors";
 import DataTable from "./DataTable";
+import { useAppContext } from "../../../hooks/contexts/AppContext";
 
 export default function ModelDetailsView() {
-  const { getLLMById, isLoading, errors } = useLLMCatalogueContext();
+  const { getLLMById, isLoading } = useLLMCatalogueContext();
+  const [errors, setErrors] = useState(null);
+  const { isAdmin } = useAppContext();
+
   const modelId = useParams().modelId;
   const [model, setModel] = useState(null);
 
   const fetchModel = async () => {
-    const model = await getLLMById(modelId);
-    setModel(model);
+    const response = await getLLMById(modelId);
+    if (response.errors) setErrors(response.errors);
+    else setModel(response);
   };
 
   useEffect(() => {
@@ -26,7 +32,7 @@ export default function ModelDetailsView() {
   return (
     <div className="mt-12 mb-[10vh]">
       <Link to={-1} className="text-primary-700">
-        {"< Back to list"}
+        {"< Back"}
       </Link>
       <div className="flex flex-col items-center w-full px-2">
         {errors && <RenderedErrors errors={errors} />}
@@ -34,9 +40,16 @@ export default function ModelDetailsView() {
         {model && !isLoading && !errors && (
           <div>
             <div className="mb-4">
-              <h2 className="text-3xl text-secondary-700 font-light text-center mb-2">
-                {model.name}
-              </h2>
+              <div className="flex flex-row items-center justify-center mb-2 gap-x-2">
+                <h2 className="text-3xl text-secondary-700 font-light text-center">
+                  {model.name}
+                </h2>
+                {isAdmin && (
+                  <Link to="edit">
+                    <CiEdit className="text-3xl cursor-pointer text-secondary-700 hover:text-green-500" />
+                  </Link>
+                )}
+              </div>
               {model.url && (
                 <div className="flex justify-center">
                   <a

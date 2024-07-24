@@ -45,12 +45,12 @@ export default class Server {
     // Routers
     this.#app.use(
       this.#userRouter.getRouteStartPoint(),
-      this.#userRouter.getRouter()
+      this.#userRouter.getRouter(),
     );
 
     this.#app.use(
       this.#llmRouter.getRouteStartPoint(),
-      this.#llmRouter.getRouter()
+      this.#llmRouter.getRouter(),
     );
   };
 

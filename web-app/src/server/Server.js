@@ -2,6 +2,7 @@ import express from "express";
 import UserRoutes from "../routes/User.routes.js";
 import LLMRoutes from "../routes/LLM.routes.js";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 export default class Server {
   #app;
@@ -29,7 +30,8 @@ export default class Server {
   start = () => {
     // Cors options
     const corsOptions = {
-      origin: "*",
+      credentials: true,
+      origin: [process.env.CLIENT_URL],
     };
 
     // Start listening
@@ -38,6 +40,7 @@ export default class Server {
       console.log(`Cors options: ${corsOptions.origin}`);
     });
 
+    this.#app.use(cookieParser());
     this.#app.use(express.json());
     this.#app.use(cors(corsOptions));
 
@@ -51,7 +54,6 @@ export default class Server {
       this.#llmRouter.getRouteStartPoint(),
       this.#llmRouter.getRouter()
     );
-    
   };
 
   close = () => {

@@ -1,8 +1,7 @@
 import axios from "axios";
 import withErrorHandling from "./withErrorHandling";
-import catalogueFilterData from "../dummyData/catalogueFilterData";
 
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 
 const llmEndpointRoot = `${import.meta.env.VITE_APP_API_ROOT}/llm`;
 

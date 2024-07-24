@@ -4,7 +4,6 @@ import { Fragment } from "react";
 
 export default function DataTable({ model }) {
   const cellClasses = "px-2 py-1";
-  console.log(model);
 
   const getRowDataEl = (rowData, separator) => {
     const values = separator ? rowData.split(separator) : [rowData];

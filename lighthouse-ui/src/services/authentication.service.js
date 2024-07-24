@@ -1,7 +1,7 @@
 import axios from "axios";
 import withErrorHandling from "./withErrorHandling";
 
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 
 const authenticationEndpointRoot = `${import.meta.env.VITE_APP_API_ROOT}/user`;
 
@@ -40,7 +40,9 @@ export const signIn = async (userCredentials) => {
  * @returns {Promise<void>} A promise that resolves when the sign-out process is complete.
  */
 export const signOut = async () => {
+  let url = `${authenticationEndpointRoot}/log-out`;
   return await withErrorHandling(async () => {
+    await axios.post(url);
     localStorage.removeItem(`user`);
   });
 };

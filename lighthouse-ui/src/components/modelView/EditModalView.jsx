@@ -34,7 +34,7 @@ export default function EditModalView() {
     <div className="flex flex-col items-center mt-8">
       {fetchModelErrors && <RenderedErrors errors={fetchModelErrors} />}
       {isLoading && <LoadingSpinner />}
-      {model && !isLoading && (
+      {model && (
         <>
           <h2 className="text-3xl text-secondary-700 font-light mb-6">
             {`Editing ${model.name}`}

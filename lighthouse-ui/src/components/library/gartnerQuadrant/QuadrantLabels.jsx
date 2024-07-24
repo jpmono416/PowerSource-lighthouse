@@ -34,7 +34,7 @@ export default function QuadrantLabels() {
           bottom: yAlign === "bottom" ? 0 : undefined,
         }}
       >
-        <div className="bg-secondary-700 text-secondary-50 px-4 py-1">
+        <div className="text-xs sm:text-base bg-secondary-700 text-secondary-50 px-4 py-1 text-nowrap truncate">
           {title}
         </div>
       </div>

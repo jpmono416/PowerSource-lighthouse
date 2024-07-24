@@ -5,6 +5,7 @@ import Compare from "../components/compare/Compare";
 import TabbedRoutes from "../components/library/TabbedRoutes";
 import CatalogueRouter from "./CatalogueRouter";
 import { LLMCatalogueContextProvider } from "../hooks/contexts/LLMCatalogueContext";
+import RequireLoggedIn from "../components/library/RequireLoggedIn";
 
 const modelPaths = [
   {
@@ -26,7 +27,14 @@ export default function LighthouseRouter() {
           </LLMCatalogueContextProvider>
         }
       >
-        <Route path="/models/*" element={<TabbedRoutes paths={modelPaths} />} />
+        <Route
+          path="/models/*"
+          element={
+            <RequireLoggedIn>
+              <TabbedRoutes paths={modelPaths} />
+            </RequireLoggedIn>
+          }
+        />
       </Route>
     </Routes>
   );

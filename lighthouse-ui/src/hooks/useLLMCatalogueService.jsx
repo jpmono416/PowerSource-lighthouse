@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 
+import { useAppContext } from "./contexts/AppContext";
 import QueryStringBuilder from "../utils/QueryStringBuilder";
 import * as llmService from "../services/llm.service";
 
@@ -10,6 +11,8 @@ export default function useLLMCatalogueService() {
   const [errors, setErrors] = useState(null);
   const [queryString, setQueryString] = useState("");
   const [queryValues, setQueryValues] = useState({});
+
+  const { activeUser } = useAppContext();
 
   const queryStringBuilder = useMemo(() => new QueryStringBuilder(), []);
 
@@ -111,7 +114,7 @@ export default function useLLMCatalogueService() {
 
   useEffect(() => {
     initialiseData();
-  }, []);
+  }, [activeUser]);
 
   return {
     createLLM,

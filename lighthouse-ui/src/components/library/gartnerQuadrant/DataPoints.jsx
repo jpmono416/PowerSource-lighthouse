@@ -14,6 +14,7 @@ export default function DataPoints({ dataPoints }) {
     return (
       <DataPoint
         key={dataPoint.id}
+        link={dataPoint.link}
         gradient={gradient}
         label={dataPoint.name}
         x={adjustValueForPadding(dataPoint.x)}

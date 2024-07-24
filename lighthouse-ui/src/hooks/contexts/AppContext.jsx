@@ -7,8 +7,7 @@ const AppContext = createContext();
 const AppContextProvider = function ({ children }) {
   const userServices = useLighthouseUserService();
   const [screenSize, setScreenSize] = useState(getScreenSize());
-  // const isAdmin = userServices?.activeUser?.roles?.includes("admin");
-  const isAdmin = true;
+  const isAdmin = userServices?.activeUser?.roles?.includes("admin");
 
   useEffect(() => {
     const handleUpdateScreenSize = () => {

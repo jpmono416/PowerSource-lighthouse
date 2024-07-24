@@ -54,6 +54,18 @@ export default class LLMController {
     }
   };
 
+  static updateLLM = async (req, res) => {
+    try {
+      if (!req.params || !req.params.id)
+        return res.status(400).json({ error: "Invalid LLM ID" });
+
+      const updatedLLM = await LLMService.updateLLM(req.params.id, req.body);
+      res.status(200).json(updatedLLM);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
+
   static getDistinctFilterValues = async (req, res) => {
     try {
       const filterValues = await LLMService.getDistinctFilterValues();

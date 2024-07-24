@@ -18,6 +18,12 @@ export default class LLMRoutes {
       UserController.requireLoggedIn,
       LLMController.getAllLLMs
     );
+    this.#router.put(
+      "/:id",
+      UserController.requireLoggedIn,
+      UserController.requireAdminRole,
+      LLMController.updateLLM
+    );
     this.#router.get("/matrix", LLMController.getMatrixLLMs);
     this.#router.get("/filters", LLMController.getDistinctFilterValues);
     this.#router.get(

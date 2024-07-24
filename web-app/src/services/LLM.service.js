@@ -138,6 +138,17 @@ export default class LLMService {
     }
   }
 
+    static async updateLLM(id, llmDetails) {
+        try {
+            const LLMModel = await this.getLLMModel();
+            const llm = await LLMModel.update(llmDetails, { where: { id } });
+            return llm;
+        } catch (error) {
+            console.error("Error updating LLM:", error);
+            throw error;
+        }
+    }
+    
   static async getDistinctFilterValues() {
     try {
       const LLMModel = await this.getLLMModel();

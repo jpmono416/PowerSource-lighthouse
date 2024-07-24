@@ -20,10 +20,9 @@ export default class LLMService {
     }
   }
 
-  static async createLLM(llmDetails) {
+  static async createLLM(createdBy, llmDetails) {
     const type = "model";
     const {
-      createdBy,
       name,
       description,
       modality,

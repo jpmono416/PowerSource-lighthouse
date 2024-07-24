@@ -9,7 +9,7 @@ import RenderedErrors from "../library/RenderedErrors";
 import AddLLMModalButton from "./AddLLMModalButton";
 
 export default function Catalogue() {
-  const { screenSize } = useAppContext();
+  const { screenSize, isAdmin } = useAppContext();
   const { results, isLoading, errors } = useLLMCatalogueContext();
 
   const catalogueTableConfig = useMemo(() => {
@@ -22,7 +22,7 @@ export default function Catalogue() {
     <div className="mt-8">
       <div className="grid grid-cols-[1fr_auto] items-center  mb-6">
         <CatalogueFilter isDisabled={isLoading} />
-        <AddLLMModalButton isDisabled={isLoading} />
+        {isAdmin && <AddLLMModalButton isDisabled={isLoading} />}
       </div>
       <Table
         config={catalogueTableConfig}

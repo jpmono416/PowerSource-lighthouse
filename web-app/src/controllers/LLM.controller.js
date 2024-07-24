@@ -14,7 +14,7 @@ export default class LLMController {
     try {
       if (!req.body)
         return res.status(400).json({ error: "Invalid LLM details" });
-      const llm = await LLMService.createLLM(req.body);
+      const llm = await LLMService.createLLM(req.user.id, req.body);
       res.status(201).json(llm);
     } catch (error) {
       res.status(500).json({ error: error.message });

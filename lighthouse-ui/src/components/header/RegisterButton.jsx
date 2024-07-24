@@ -41,7 +41,7 @@ export default function RegisterButton({
             isLoading={authenticationIsLoading}
             activeFields={{
               username: true,
-              emailAddress: true,
+              email: true,
               password: true,
               confirmPassword: true,
             }}

@@ -78,7 +78,7 @@ describe("Sign in integration tests: ", () => {
 
   describe("Submission tests: ", () => {
     const testSubmission = {
-      emailAddress: "lou@vu.com",
+      email: "lou@vu.com",
       password: "StephanieSays1$",
     };
     let emailAddressInput;
@@ -100,7 +100,7 @@ describe("Sign in integration tests: ", () => {
       passwordInput = screen.getByTitle(/^password/i);
       await act(async () => {
         fireEvent.change(emailAddressInput, {
-          target: { value: testSubmission.emailAddress },
+          target: { value: testSubmission.email },
         });
         fireEvent.change(passwordInput, {
           target: { value: testSubmission.password },

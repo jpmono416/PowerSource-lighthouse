@@ -3,7 +3,7 @@ import validator from "validator";
 export default class UserDetailsValidator {
   static #validators = {
     username: UserDetailsValidator.validateUsername,
-    emailAddress: UserDetailsValidator.validateEmailAddress,
+    email: UserDetailsValidator.validateEmailAddress,
     password: UserDetailsValidator.validatePassword,
     confirmPassword: UserDetailsValidator.validateConfirmPassword,
   };

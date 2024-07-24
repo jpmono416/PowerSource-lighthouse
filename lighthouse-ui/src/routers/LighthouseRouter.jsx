@@ -1,10 +1,10 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 
 import Home from "../components/home/Home";
-import Catalogue from "../components/catalogue/Catalogue";
 import Compare from "../components/compare/Compare";
 import TabbedRoutes from "../components/library/TabbedRoutes";
 import CatalogueRouter from "./CatalogueRouter";
+import { LLMCatalogueContextProvider } from "../hooks/contexts/LLMCatalogueContext";
 
 const modelPaths = [
   {
@@ -19,7 +19,15 @@ export default function LighthouseRouter() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/models/*" element={<TabbedRoutes paths={modelPaths} />} />
+      <Route
+        element={
+          <LLMCatalogueContextProvider>
+            <Outlet />
+          </LLMCatalogueContextProvider>
+        }
+      >
+        <Route path="/models/*" element={<TabbedRoutes paths={modelPaths} />} />
+      </Route>
     </Routes>
   );
 }

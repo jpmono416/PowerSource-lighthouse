@@ -8,7 +8,7 @@ describe("Register tests: ", () => {
   beforeEach(() => {
     testSubmission = {
       username: "test-user",
-      emailAddress: "test@email.com",
+      email: "test@email.com",
       password: "password12$",
       confirmPassword: "password12$",
     };

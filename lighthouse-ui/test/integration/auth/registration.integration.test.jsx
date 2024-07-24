@@ -39,7 +39,7 @@ describe("Registration integration tests: ", () => {
   describe("Form submission tests", () => {
     const expectedSubmission = {
       username: "test-username",
-      emailAddress: "test@email.com",
+      email: "test@email.com",
       password: "password12$",
     };
     let submitButton;
@@ -66,7 +66,7 @@ describe("Registration integration tests: ", () => {
           target: { value: expectedSubmission.username },
         });
         fireEvent.change(emailAddressInputField, {
-          target: { value: expectedSubmission.emailAddress },
+          target: { value: expectedSubmission.email },
         });
         fireEvent.change(passwordInputField, {
           target: { value: expectedSubmission.password },

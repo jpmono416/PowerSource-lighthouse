@@ -17,7 +17,7 @@ export default function Button({
       "border-green-600 hover:bg-opacity-95 hover:shadow": !danger,
       "text-secondary-50 bg-green-600": primary,
       "hover:bg-secondary-50": !primary && !danger,
-      "border-grid-red bg-grid-red hover:bg-opacity-90": danger,
+      "border-primary-600 bg-primary-600 hover:bg-opacity-90": danger,
       "bg-opacity-0 hover:bg-opacity-10": !primary && !danger,
       "disabled pointer-events-none": isDisabled || isLoading,
       "opacity-50": isDisabled,

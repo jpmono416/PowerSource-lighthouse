@@ -3,14 +3,15 @@ export default function RenderedErrors({ errors }) {
 
   const errorItems = errors.map((error, i) => {
     return (
-      <li key={i} className="text-red-700">
+      <li key={i} className="text-primary-800 list-none">
+        <span className="text-xl font-bold">! </span>
         {error}
       </li>
     );
   });
 
   return (
-    <div className="mt-4 p-2 pl-6 bg-secondary-50 bg-opacity-80" role="alert">
+    <div className="mt-4 p-2 pl-4 bg-secondary-50 bg-opacity-80" role="alert">
       {errorItems}
     </div>
   );

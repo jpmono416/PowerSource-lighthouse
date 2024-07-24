@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
-export default function DataPoint({ label, x, y, gradient }) {
+export default function DataPoint({ label, x, y, gradient, link }) {
+  const navigate = useNavigate();
+
   const dataPointOrigin = {
     left: `50%`,
     bottom: `50%`,
@@ -12,6 +15,11 @@ export default function DataPoint({ label, x, y, gradient }) {
     backgroundColor: gradient.getColourAt((x + y) / 2),
   };
   const [dataPointPosition, setDataPointPosition] = useState(dataPointOrigin);
+
+  const handleClick = () => {
+    if (!link) return;
+    navigate(link);
+  };
 
   useEffect(() => {
     setDataPointPosition(dataPointDestination);
@@ -31,6 +39,7 @@ export default function DataPoint({ label, x, y, gradient }) {
         ...dataPointPosition,
         transition: "bottom 1s ease, left 1s ease",
       }}
+      onClick={handleClick}
     >
       <div
         className="absolute hidden group-hover:block px-2 py-1 bg-green-300"

@@ -2,6 +2,7 @@ import { useAppContext } from "../../hooks/contexts/AppContext";
 import Button from "../library/Button";
 import Modal from "../library/Modal";
 import UserDetailsForm from "../forms/authForms/UserDetailsForm";
+import SignInForm from "../forms/authForms/SignInForm";
 
 export default function SignInButton({
   onClick,
@@ -16,16 +17,8 @@ export default function SignInButton({
     handleClearErrors,
   } = useAppContext();
 
-  const handleSignIn = async (submission) => {
-    const user = await signInUser(submission);
-    if (!user) return;
+  const handleSuccessfulSignIn = async () => {
     setShowSignInSuccessMessage(true);
-    onClose();
-  };
-
-  const handleCloseModal = () => {
-    handleClearErrors();
-    onClose();
   };
 
   return (
@@ -37,21 +30,7 @@ export default function SignInButton({
         SIGN-IN
       </Button>
       {doShowForm && (
-        <Modal onClose={handleCloseModal}>
-          <UserDetailsForm
-            headingText="Sign-In"
-            submitButtonText={"Submit"}
-            onSubmit={handleSignIn}
-            isLoading={authenticationIsLoading}
-            errors={authenticationErrors}
-            handleClearErrors={handleClearErrors}
-            doSkipValidation
-            activeFields={{
-              email: true,
-              password: true,
-            }}
-          />
-        </Modal>
+        <SignInForm onClose={onClose} onSuccess={handleSuccessfulSignIn} />
       )}
     </>
   );

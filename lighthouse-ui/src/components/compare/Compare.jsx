@@ -28,6 +28,7 @@ export default function Compare() {
         name: model.name,
         x: parseInt(model.business_readiness),
         y: parseInt(model.perceived_business_value),
+        link: `/models/catalogue/${model.id}`,
       };
     });
     content = (

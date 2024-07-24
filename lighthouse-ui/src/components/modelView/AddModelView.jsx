@@ -12,6 +12,14 @@ export default function AddModalView() {
     if (newLLM?.id) navigate(`/models/catalogue/${newLLM.id}`);
   };
 
+  const defaults = {
+    name: "TestModal",
+    description: "Test description for test modal",
+    organization: "Blah blah",
+    modality: "hello",
+    created_date: "2024-01-01",
+  };
+
   return (
     <div>
       {" "}
@@ -27,6 +35,7 @@ export default function AddModalView() {
           submitButtonText="Create"
           isLoading={isLoading}
           errors={errors}
+          defaultValues={defaults}
         />
       </div>
     </div>

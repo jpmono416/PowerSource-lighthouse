@@ -10,6 +10,7 @@ export default function ModalityInput({
   onChange,
   isActive,
   doSkipValidation,
+  forceShowValidationErrors,
 }) {
   if (!isActive) return;
 
@@ -20,6 +21,7 @@ export default function ModalityInput({
       validator={ModalDetailsValidator.validateModality}
       doSkipValidation={doSkipValidation}
       doUseDarkText
+      forceShowValidationErrors={forceShowValidationErrors}
     >
       <FormItem labelTitle={label} doUseDarkText maxWidth="max-w-[32rem]">
         <FormInput

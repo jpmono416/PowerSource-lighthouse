@@ -10,6 +10,7 @@ export default function AccessInput({
   onChange,
   isActive,
   doSkipValidation,
+  forceShowValidationErrors,
 }) {
   if (!isActive) return;
 
@@ -20,6 +21,7 @@ export default function AccessInput({
       validator={ModalDetailsValidator.validateAccess}
       doSkipValidation={doSkipValidation}
       doUseDarkText
+      forceShowValidationErrors={forceShowValidationErrors}
     >
       <FormItem labelTitle={label} doUseDarkText maxWidth="max-w-[32rem]">
         <FormInput

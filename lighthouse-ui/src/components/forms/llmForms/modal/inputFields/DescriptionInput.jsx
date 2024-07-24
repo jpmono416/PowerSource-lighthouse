@@ -9,6 +9,7 @@ export default function DescriptionInput({
   onChange,
   isActive,
   doSkipValidation,
+  forceShowValidationErrors,
 }) {
   if (!isActive) return;
 
@@ -19,6 +20,7 @@ export default function DescriptionInput({
       validator={ModalDetailsValidator.validateDescription}
       doSkipValidation={doSkipValidation}
       doUseDarkText
+      forceShowValidationErrors={forceShowValidationErrors}
     >
       <FormItem
         labelTitle={label}

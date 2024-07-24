@@ -1,5 +1,3 @@
-import validator from "validator";
-
 export default class ModalDetailsValidator {
   static #validators = {
     name: ModalDetailsValidator.validateName,
@@ -38,8 +36,8 @@ export default class ModalDetailsValidator {
   static validateDescription(description) {
     if (description.length < 16)
       return [false, "Description must be at least 16 characters"];
-    if (description.length > 300)
-      return [false, "Description must be no more than 300 characters"];
+    if (description.length > 5000)
+      return [false, "Description must be no more than 5,000 characters"];
     return [true];
   }
 
@@ -52,8 +50,8 @@ export default class ModalDetailsValidator {
   static validateOrganisation(organisation) {
     if (organisation.length < 3)
       return [false, "Organisation must be at least 3 characters"];
-    if (organisation.length > 64)
-      return [false, "Organisation must be no more than 64 characters"];
+    if (organisation.length > 300)
+      return [false, "Organisation must be no more than 300 characters"];
     return [true];
   }
 
@@ -69,8 +67,8 @@ export default class ModalDetailsValidator {
   }
 
   static validateLicence(licence) {
-    if (licence.length > 32)
-      return [false, "Licence must be no more than 32 characters"];
+    if (licence.length > 64)
+      return [false, "Licence must be no more than 64 characters"];
     return [true];
   }
 

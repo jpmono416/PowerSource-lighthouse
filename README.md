@@ -45,7 +45,53 @@ npm install
 
 Ensure PostgreSQL is installed and running on your system. Create a database named lighthouse and run the provided SQL scripts to set up the tables.
 
-> TODO: DB Team, please provide details about the database setup once we have a live instance.
+```SQL
+CREATE TABLE "student"."powersource_llm" (
+id SERIAL PRIMARY KEY,
+type TEXT,
+name TEXT,
+organization TEXT,
+description TEXT,
+created_date DATE,
+url TEXT,
+datasheet TEXT,
+modality TEXT,
+size TEXT,
+sample TEXT,
+analysis TEXT,
+dependencies TEXT,
+included TEXT,
+excluded TEXT,
+quality_control TEXT,
+access TEXT,
+license TEXT,
+intended_uses TEXT,
+prohibited_uses TEXT,
+monitoring TEXT,
+feedback TEXT,
+model_card TEXT,
+training_emissions TEXT,
+training_time TEXT,
+training_hardware TEXT,
+adaptation TEXT,
+output_space TEXT,
+terms_of_service TEXT,
+monthly_active_users TEXT,
+user_distribution TEXT,
+failures TEXT,
+perceived_business_value TEXT,
+business_readiness TEXT
+);
+ 
+ 
+CREATE TABLE student.powersourcce_users (
+id SERIAL PRIMARY KEY,
+username  TEXT NOT NULL,
+email     TEXT NOT NULL,
+password  TEXT NOT NULL,
+roles     TEXT[]
+);
+```
 
 ### 4. Run the Application
 

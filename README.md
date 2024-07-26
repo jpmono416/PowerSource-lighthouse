@@ -4,6 +4,8 @@
   <img src="https://github.com/user-attachments/assets/732e1c3f-6a07-4180-b88b-df2eaf50a1f4" alt="Powersource Logo" style="max-width: 100%; width: 700px;">
 </p>
 
+[Demo](https://powersource-lighthouse.netlify.app/)
+
 Lighthouse is a cutting-edge web application designed to serve as a comprehensive repository or library of Large Language Models (LLMs). It aims to provide easy access to a wide range of LLMs for developers, researchers, and enthusiasts interested in exploring and utilizing the capabilities of advanced language models. Lighthouse leverages the power of React for its frontend development, ensuring a responsive and user-friendly interface, while the backend is powered by Express and Node.js, offering robust and scalable server-side functionality. The application's data is stored and managed in a PostgreSQL database, ensuring efficient data handling and retrieval.
 
 ## Features

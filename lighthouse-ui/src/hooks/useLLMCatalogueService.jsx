@@ -8,7 +8,7 @@ import * as llmService from "../services/llm.service";
 export default function useLLMCatalogueService() {
   const [results, setResults] = useState(null);
   const [filterOptions, setFilterOptions] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [errors, setErrors] = useState(null);
   const [lastAction, setLastAction] = useState("");
   const [queryString, setQueryString] = useState("");
@@ -133,7 +133,8 @@ export default function useLLMCatalogueService() {
   };
 
   const initialiseData = async () => {
-    await getFilterOptions();
+    const filters = await getFilterOptions();
+    if (!filters) return;
     await getLLMs();
   };
 
@@ -142,6 +143,7 @@ export default function useLLMCatalogueService() {
   }, [pathname]);
 
   useEffect(() => {
+    if (!activeUser) return;
     initialiseData();
   }, [activeUser]);
 

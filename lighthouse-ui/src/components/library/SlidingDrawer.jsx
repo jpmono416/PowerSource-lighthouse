@@ -14,6 +14,7 @@ export default function SlidingDrawer({ doShow, onClose, children }) {
 
   const drawer = (
     <div
+      aria-hidden={!doShow}
       className={classNames(
         "absolute right-0 bottom-0 overflow-hidden h-full transition-all",
         {

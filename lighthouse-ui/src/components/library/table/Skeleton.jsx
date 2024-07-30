@@ -13,7 +13,11 @@ export default function Skeleton({ columns, padX }) {
       />
     ));
     skeletonRows.push(
-      <tr key={i} className="contents even:bg-secondary-100">
+      <tr
+        key={i}
+        className="contents even:bg-secondary-100"
+        aria-label="placeholder row"
+      >
         {skeletonCells}
       </tr>
     );

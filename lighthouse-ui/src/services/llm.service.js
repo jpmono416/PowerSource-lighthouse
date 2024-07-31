@@ -5,7 +5,7 @@ axios.defaults.withCredentials = true;
 
 const llmEndpointRoot = `${import.meta.env.VITE_APP_API_ROOT}/llm`;
 
-export const getLLMs = async (queryString) => {
+export const getLLMs = async (queryString = "") => {
   let url = `${llmEndpointRoot}${queryString}`;
   return await withErrorHandling(async () => {
     const response = await axios.get(url);
@@ -21,7 +21,7 @@ export const getLLMById = async (id) => {
   });
 };
 
-export const getLLMCatalogueFilterOptions = async (queryString) => {
+export const getLLMCatalogueFilterOptions = async () => {
   let url = `${llmEndpointRoot}/filters`;
   return await withErrorHandling(async () => {
     const response = await axios.get(url);

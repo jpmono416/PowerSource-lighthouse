@@ -32,6 +32,7 @@ export default function DescriptionInput({
           <p className="mt-2">{`${descriptionValue.length} characters`}</p>
         )}
         <textarea
+          title={label}
           className="w-full px-2 py-1"
           rows="12"
           value={descriptionValue}

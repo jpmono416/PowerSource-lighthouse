@@ -12,7 +12,6 @@ export default function FilterButton({
   const [doShowModal, setDoShowModal] = useState(false);
 
   const handleToggleModal = () => {
-    if (isDisabled) return;
     setDoShowModal((curr) => !curr);
   };
 
@@ -23,17 +22,21 @@ export default function FilterButton({
 
   return (
     <>
-      <CiFilter
-        className={classNames("text-3xl  fill-secondary-800", {
-          "cursor-pointer hover:fill-green-700": !isDisabled,
-          "opacity-50": isDisabled,
-        })}
-        onClick={handleToggleModal}
-        aria-hidden={doShowModal ? "false" : "true"}
+      <button
+        disabled={isDisabled}
         aria-label="filter"
         title="Filter"
-      />
+        onClick={handleToggleModal}
+      >
+        <CiFilter
+          className={classNames("text-3xl fill-secondary-800", {
+            "cursor-pointer hover:fill-green-700": !isDisabled,
+            "opacity-50": isDisabled,
+          })}
+        />
+      </button>
       <FilterModal
+        aria-hidden={doShowModal ? "false" : "true"}
         refreshResults={refreshResults}
         doShow={doShowModal}
         onClose={() => setDoShowModal(false)}

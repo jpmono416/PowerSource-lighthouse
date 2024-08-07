@@ -15,6 +15,7 @@ export default function FilterModal({
   filterOptions,
 }) {
   if (!filterOptions) return;
+
   const { organization, license, access, modality } = filterOptions;
   const validator = useMemo(
     () =>

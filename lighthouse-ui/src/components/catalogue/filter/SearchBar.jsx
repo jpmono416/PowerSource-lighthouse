@@ -13,7 +13,6 @@ export default function SearchBar({
 
   const handleSearch = (e) => {
     e?.preventDefault();
-    if (isDisabled) return;
     refreshResults();
   };
 
@@ -29,17 +28,21 @@ export default function SearchBar({
         defaultValue={defaultValue}
       />
       <div className="absolute right-0 top-0 bottom-0 flex items-center justify-center">
-        <CiSearch
-          type="submit"
-          className={classNames("text-3xl fill-secondary-800", {
-            "cursor-pointer hover:fill-green-700": !isDisabled,
-            "opacity-50 cursor-default": isDisabled,
-          })}
+        <button
           onClick={handleSearch}
           aria-label="search"
           role="button"
           title="Search"
-        />
+          type="submit"
+          disabled={isDisabled}
+        >
+          <CiSearch
+            className={classNames("text-3xl fill-secondary-800", {
+              "cursor-pointer hover:fill-green-700": !isDisabled,
+              "opacity-50 cursor-default": isDisabled,
+            })}
+          />
+        </button>
       </div>
     </form>
   );

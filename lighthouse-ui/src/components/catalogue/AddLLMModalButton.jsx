@@ -10,6 +10,7 @@ export default function AddLLMModalButton({ isDisabled }) {
           "cursor-pointer hover:fill-green-700": !isDisabled,
           "opacity-50": isDisabled,
         })}
+        title="Add LLM model"
       />
     </Link>
   );

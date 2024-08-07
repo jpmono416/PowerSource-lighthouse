@@ -2,7 +2,7 @@ import { afterEach, beforeEach, expect } from "vitest";
 
 import UserDetailsValidator from "../../../src/utils/validators/UserDetailsValidator";
 
-describe("Register tests: ", () => {
+describe("User details tests: ", () => {
   let testSubmission;
 
   beforeEach(() => {

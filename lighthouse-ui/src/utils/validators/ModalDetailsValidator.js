@@ -57,6 +57,9 @@ export default class ModalDetailsValidator {
 
   static validateCreatedAt(createdAt) {
     if (!createdAt) return [false, "Created at is required"];
+    if (Number.isNaN(new Date(createdAt).getTime()))
+      return [false, "Created at must be a valid date"];
+
     return [true];
   }
 
@@ -74,6 +77,8 @@ export default class ModalDetailsValidator {
 
   static validatePerceivedBusinessValue(perceivedBusinessValue) {
     if (!perceivedBusinessValue) return [true];
+    if (Number.isNaN(parseInt(perceivedBusinessValue)))
+      return [false, "Perceived business value must be a number"];
     if (parseInt(perceivedBusinessValue) < 0)
       return [false, "Perceived business value must not be less than 0"];
     if (parseInt(perceivedBusinessValue) > 100)
@@ -86,6 +91,8 @@ export default class ModalDetailsValidator {
 
   static validateBusinessReadiness(businessReadiness) {
     if (!businessReadiness) return [true];
+    if (Number.isNaN(parseInt(businessReadiness)))
+      return [false, "Business readiness must be a number"];
     if (parseInt(businessReadiness) < 0)
       return [false, "Business readiness must not be less than 0"];
     if (parseInt(businessReadiness) > 100)
